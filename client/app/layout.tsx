@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Julius_Sans_One } from "next/font/google";
 import "./globals.css";
+import { UIProvider } from "./UIProvider/contextUI";
+import { LateralBar } from "./components/lateralbar";
+import { Sidebar } from "./components/sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +33,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} antialiased
+        grid grid-cols-[60px_1fr_60px]`}
       >
+        <UIProvider>
+
+        <Sidebar/>
         {children}
+        <LateralBar/>
+        </UIProvider>
       </body>
     </html>
   );

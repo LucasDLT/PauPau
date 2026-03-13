@@ -1,18 +1,14 @@
 "use client";
+import { NavbarMobile } from "@/app/components/navbar";
+import { useUI } from "@/app/UIProvider/contextUI";
 import Image from "next/image";
-import { useState } from "react";
 
 export const Init = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false); //estado para abrir y cerrar el menu, agregar efectos de animacion al titulo.
-  const handleOpenMenu = () => {
-    setIsOpen(!isOpen);
-  };
+const {isOpen} = useUI()
   return (
-    <main className="bg-[url('/backgroundmobile.png')] bg-no-repeat bg-cover h-dvh grid grid-cols-[30px_1fr_30px]">
-      <div className="bg-[url('/margins.png')] bg-no-repeat bg-cover "></div>
-
+    <main className=" min-h-dvh overflow-hidden bg-[url('/backgroundmobile.png')] bg-no-repeat bg-cover grid grid-cols-1 ">
       <div
-        className={`flex flex-col items-center transition-transform duration-900
+        className={`flex flex-col items-center z-10 transition-transform ease-in-out duration-900
      ${isOpen ? "translate-y-[0%]" : "translate-y-[35%]"}`}
       >
         <Image
@@ -22,62 +18,10 @@ export const Init = () => {
           src={"/Pau Pau arte en arcilla Title.png"}
           className="hover:cursor-pointer mt-2"
         />
-        <nav
-          className={`h-full  text-black transition-all duration-600 ${isOpen ? "opacity-100 " : "opacity-0 "}`}
-        >
-          <ul className="h-full flex flex-col items-center justify-evenly Julius-Sans-One text-3xl">
-            <li>
-              <a href="#home">INICIO</a>
-            </li>
-            <li>
-              <a href="#products">ARTICULOS</a>
-            </li>
-            <li>
-              <a href="#about">SOBRE MI</a>
-            </li>
-            <li>
-              <a href="#contact">CONTACTO</a>
-            </li>
-          </ul>
-        </nav>
+        <NavbarMobile/>
       </div>
 
-      <div
-        className="bg-[url('/margins.png')] bg-no-repeat bg-cover flex flex-col justify-evenly "
-        onClick={handleOpenMenu}
-      >
-        {isOpen ? (
-          <Image
-            width={30}
-            height={30}
-            src={"/close.png"}
-            alt="icono cerrar menu desplegable"
-            className="hover:cursor-pointer"
-          />
-        ) : (
-          <Image
-            width={30}
-            height={30}
-            src={"/menuH.png"}
-            alt="icono de menu desplegable"
-            className="hover:cursor-pointer"
-          />
-        )}
-        <Image
-          width={30}
-          height={30}
-          src={"/cart.png"}
-          alt="icono de carrito con redireccion"
-          className="hover:cursor-pointer"
-        />
-        <Image
-          width={30}
-          height={30}
-          src={"/WhatsApp Btn black.png"}
-          alt="icono de whatsapp con redireccion"
-          className="hover:cursor-pointer"
-        />
-      </div>
+
     </main>
   );
 };
