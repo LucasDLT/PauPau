@@ -11,17 +11,21 @@ export const Init = () => {
     <main className="bg-[url('/backgroundmobile.png')] bg-no-repeat bg-cover h-dvh grid grid-cols-[30px_1fr_30px]">
       <div className="bg-[url('/margins.png')] bg-no-repeat bg-cover "></div>
 
-      <div className={`flex flex-col items-center
-     ${isOpen ? 'justify-around':'justify-center'}`}>
+      <div
+        className={`flex flex-col items-center transition-transform duration-900
+     ${isOpen ? "translate-y-[0%]" : "translate-y-[35%]"}`}
+      >
         <Image
           width={250}
           height={50}
           alt="Tilulo PauPau, arte en arcilla"
           src={"/Pau Pau arte en arcilla Title.png"}
-          className="hover:cursor-pointer mt-1"
+          className="hover:cursor-pointer mt-2"
         />
-        <nav className={`text-black ${isOpen ? "flex h-full" : "hidden"}`}>
-          <ul className="flex flex-col items-center justify-evenly Julius-Sans-One text-3xl">
+        <nav
+          className={`h-full  text-black transition-all duration-600 ${isOpen ? "opacity-100 " : "opacity-0 "}`}
+        >
+          <ul className="h-full flex flex-col items-center justify-evenly Julius-Sans-One text-3xl">
             <li>
               <a href="#home">INICIO</a>
             </li>
