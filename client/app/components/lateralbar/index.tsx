@@ -8,7 +8,7 @@ export const LateralBar = () => {
   };
   return (
     <div
-      className="bg-transparent flex flex-col items-center justify-evenly"
+      className="bg-[url('/margins.png')]  flex flex-col items-center justify-between py-2"
       onClick={handleOpenMenu}
     >
       {isOpen ? (
@@ -17,7 +17,7 @@ export const LateralBar = () => {
           height={30}
           src={"/close.png"}
           alt="icono cerrar menu desplegable"
-          className="hover:cursor-pointer"
+          className="hover:cursor-pointer md:hidden"
         />
       ) : (
         <Image
@@ -25,7 +25,7 @@ export const LateralBar = () => {
           height={30}
           src={"/menuH.png"}
           alt="icono de menu desplegable"
-          className="hover:cursor-pointer"
+          className="hover:cursor-pointer md:hidden"
         />
       )}
       <Image
@@ -40,7 +40,14 @@ export const LateralBar = () => {
         height={30}
         src={"/WhatsApp Btn black.png"}
         alt="icono de whatsapp con redireccion"
-        className="hover:cursor-pointer"
+        className="hover:cursor-pointer md:hidden"
+      />
+      <Image
+        width={30}
+        height={30}
+        src={"/WhatsApp Btn.png"}
+        alt="icono de whatsapp con redireccion"
+        className="hover:cursor-pointer hidden md:block"
       />
     </div>
   );

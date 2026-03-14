@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} antialiased
-        grid grid-cols-[60px_1fr_60px]`}
+        grid grid-cols-[35px_1fr_35px]`}
       >
         <UIProvider>
 

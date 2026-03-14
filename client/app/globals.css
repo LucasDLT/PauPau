@@ -14,9 +14,8 @@
 }
 
 body {
-  background-image: url('/margins.png');
-  background-repeat: no-repeat;
-}
+
+ }
 /*letra del nav mobile*/
 .Julius-Sans-One{
   font-family: var(--Julius-Sans-One);

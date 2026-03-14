@@ -2,7 +2,7 @@ import { Init } from "./pages/init";
 
 export default function Home() {
   return (
-    <div className="relative  h-dvh">
+    <div className="">
       <Init />
     </div>
   );
