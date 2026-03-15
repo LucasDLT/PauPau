@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Julius_Sans_One } from "next/font/google";
 import "./globals.css";
 import { UIProvider } from "./UIProvider/contextUI";
+import { ContextProvider } from "./context/context";
 import { LateralBar } from "./components/lateralbar";
 import { Sidebar } from "./components/sidebar";
 
@@ -16,9 +17,9 @@ const geistMono = Geist_Mono({
 });
 
 const JuliusSansOne = Julius_Sans_One({
-weight:"400",
-variable:"--Julius-Sans-One"
-})
+  weight: "400",
+  variable: "--Julius-Sans-One",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,12 +37,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} antialiased
         grid grid-cols-[35px_1fr_35px]`}
       >
-        <UIProvider>
-
-        <Sidebar/>
-        {children}
-        <LateralBar/>
-        </UIProvider>
+        <ContextProvider>
+          <UIProvider>
+            <Sidebar />
+            {children}
+            <LateralBar />
+          </UIProvider>
+        </ContextProvider>
       </body>
     </html>
   );

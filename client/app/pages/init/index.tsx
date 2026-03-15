@@ -6,7 +6,7 @@ import Image from "next/image";
 export const Init = () => {
   const { isOpen } = useUI();
   return (
-    <main className="min-h-dvh overflow-hidden bg-[url('/backgroundmobile.png')] bg-no-repeat bg-cover grid grid-cols-1 md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_500px] ">
+    <main className="min-h-dvh overflow-hidden bg-[url('/backgroundApp.jpg')] bg-no-repeat bg-cover grid grid-cols-1 md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_500px] ">
 
       <div
         className={`flex flex-col items-center justify-center transition-transform ease-in-out duration-900
