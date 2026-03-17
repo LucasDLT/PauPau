@@ -8,7 +8,7 @@ export const LateralBar = () => {
   };
   return (
     <div
-      className="bg-[url('/margins.png')]  flex flex-col items-center justify-between py-2"
+      className="bg-[url('/margins.png')] bg-no-repeat  flex flex-col items-center justify-between py-2 fixed top-0 right-0 w-8.75 h-dvh md:z-100"
       onClick={handleOpenMenu}
     >
       {isOpen ? (

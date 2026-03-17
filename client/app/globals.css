@@ -13,10 +13,12 @@
   } 
 }
 
-body {
 
- }
 /*letra del nav mobile*/
 .Julius-Sans-One{
   font-family: var(--Julius-Sans-One);
+}
+/*letra de textos generales*/
+.Thasadith{
+  font-family: var(--Thasadith);
 }

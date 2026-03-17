@@ -14,7 +14,7 @@ weight:string,
 finished:string,
 stock:number,
 type:TypeProduct,
-image:string
+image:string[]
 }
 
 type TypeProduct= "project" | "product"

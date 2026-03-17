@@ -1,11 +1,12 @@
+'use client';
 import { useUI } from "@/app/UIProvider/contextUI";
 export const NavbarMobile = () => {
   const { isOpen } = useUI();
   return (
     <nav
-      className={`w-full h-full text-black transition-all duration-900 ${isOpen ? "opacity-100 translate-y-[-4%]" : "opacity-0 translate-y-[80%] "} md:opacity-100 md:translate-y-[0%] md:col-start-2 `}
+      className={` fixed top-0 right-0 w-full z-50 text-black transition-all duration-900 ${isOpen ? "opacity-100 translate-y-[60%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:col-start-2   md:backdrop-blur-3xl md:h-8`}
     >
-      <ul className="flex flex-col justify-around items-center h-full Julius-Sans-One text-3xl gap-20 md:flex-row md:gap-0 md:text-sm">
+      <ul className=" z-10 flex flex-col justify-around items-center h-full Julius-Sans-One text-3xl gap-20 md:flex-row md:text-sm md:justify-evenly md:gap-10">
         <li>
           <a href="#home">Inicio</a>
         </li>
