@@ -1,5 +1,5 @@
 "use client"
-import { createContext, useState, ReactNode, useContext } from "react";
+import { createContext, useState, ReactNode, useContext, useEffect } from "react";
 interface UIcontextProps{
 isOpen:boolean,
 setIsOpen:React.Dispatch<React.SetStateAction<boolean>>,
@@ -18,7 +18,13 @@ return contextUI
 
 export const UIProvider = ( {children}: {children: ReactNode})=>{
   const [isOpen, setIsOpen] = useState<boolean>(false); //estado para abrir y cerrar el menu, agregar efectos de animacion al titulo.
-    
+
+  useEffect(()=>{
+    document.body.style.overflow = isOpen ? "hidden" : "auto"
+    return ()=>{
+        document.body.style.overflow ="auto"
+    }
+  },[isOpen])
   const value={
     isOpen, setIsOpen
   }
