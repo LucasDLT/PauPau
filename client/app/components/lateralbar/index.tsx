@@ -8,7 +8,7 @@ export const LateralBar = () => {
   };
   return (
     <div
-      className="bg-[url('/margins.png')] bg-no-repeat  flex flex-col items-center justify-between py-2 fixed top-0 right-0 w-8.75 h-dvh md:z-100"
+      className="flex flex-col items-center justify-between py-1 z-51 fixed top-0 right-0 w-8.75 h-dvh md:z-100"
       onClick={handleOpenMenu}
     >
       {isOpen ? (
@@ -29,7 +29,7 @@ export const LateralBar = () => {
         />
       )}
       <Image
-        width={30}
+        width={25}
         height={30}
         src={"/cart.png"}
         alt="icono de carrito con redireccion"

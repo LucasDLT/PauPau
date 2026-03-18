@@ -6,7 +6,7 @@ export const Init = () => {
   const { isOpen } = useUI();
   return (
     <main
-      id="#home"
+      id="home"
       className="min-h-dvh  md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_500px] md:pt-8 "
     >
       <div className="hidden md:block md:relative md:hover:cursor-pointer md:col-start-2  md:row-span-3">
@@ -20,7 +20,7 @@ export const Init = () => {
 
       <div
         className={`flex items-center justify-center transition-transform ease-in-out duration-900
-     ${isOpen ? "translate-y-[6%]" : "translate-y-full"}
+     ${isOpen ? "transition-opacity duration-400 scale-0" : "translate-y-full"}
      md:col-start-1 md:row-start-2 md:translate-y-50 `}
       >
         <Image
