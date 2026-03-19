@@ -13,9 +13,9 @@ export const products: Product[] = [
     stock: 10,
     type: "project",
     image: [
-      "https://imgur.com/QXy2DNO",
-      "https://imgur.com/QXy2DNO",
-      "https://imgur.com/QXy2DNO",
+      "https://i.imgur.com/QXy2DNO.jpg",
+      "https://i.imgur.com/QXy2DNO.jpg",
+      "https://i.imgur.com/QXy2DNO.jpg",
     ],
   },
   {
@@ -30,9 +30,9 @@ export const products: Product[] = [
     stock: 20,
     type: "project",
     image: [
-      "https://imgur.com/4Y5Zml7",
-      "https://imgur.com/4Y5Zml7",
-      "https://imgur.com/4Y5Zml7",
+      "https://i.imgur.com/4Y5Zml7.jpg",
+      "https://i.imgur.com/4Y5Zml7.jpg",
+      "https://i.imgur.com/4Y5Zml7.jpg",
     ],
   },
   {
@@ -47,9 +47,9 @@ export const products: Product[] = [
     stock: 20,
     type: "project",
     image: [
-      "https://imgur.com/ABL6VVK",
-      "https://imgur.com/ABL6VVK",
-      "https://imgur.com/ABL6VVK",
+      "https://i.imgur.com/ABL6VVK.jpg",
+      "https://i.imgur.com/ABL6VVK.jpg",
+      "https://i.imgur.com/ABL6VVK.jpg",
     ],
   },
   {
@@ -64,9 +64,9 @@ export const products: Product[] = [
     stock: 15,
     type: "project",
     image: [
-      "https://imgur.com/vJIOEKU",
-      "https://imgur.com/vJIOEKU",
-      "https://imgur.com/vJIOEKU",
+      "https://i.imgur.com/vJIOEKU.jpg",
+      "https://i.imgur.com/vJIOEKU.jpg",
+      "https://i.imgur.com/vJIOEKU.jpg",
     ],
   },
   {
@@ -81,9 +81,9 @@ export const products: Product[] = [
     stock: 18,
     type: "project",
     image: [
-      "https://imgur.com/KOzRVFE",
-      "https://imgur.com/KOzRVFE",
-      "https://imgur.com/KOzRVFE",
+      "https://i.imgur.com/KOzRVFE.jpg",
+      "https://i.imgur.com/KOzRVFE.jpg",
+      "https://i.imgur.com/KOzRVFE.jpg",
     ],
   },
   {
@@ -98,9 +98,9 @@ export const products: Product[] = [
     stock: 12,
     type: "product",
     image: [
-      "https://imgur.com/KOzRVFE",
-      "https://imgur.com/KOzRVFE",
-      "https://imgur.com/KOzRVFE",
+      "https://i.imgur.com/KOzRVFE.jpg",
+      "https://i.imgur.com/KOzRVFE.jpg",
+      "https://i.imgur.com/KOzRVFE.jpg",
     ],
   },
   {
@@ -115,9 +115,9 @@ export const products: Product[] = [
     stock: 10,
     type: "product",
     image: [
-      "https://imgur.com/8joA5HP",
-      "https://imgur.com/8joA5HP",
-      "https://imgur.com/8joA5HP",
+      "https://i.imgur.com/8joA5HP.jpg",
+      "https://i.imgur.com/8joA5HP.jpg",
+      "https://i.imgur.com/8joA5HP.jpg",
     ],
   },
   {
@@ -132,9 +132,9 @@ export const products: Product[] = [
     stock: 14,
     type: "product",
     image: [
-      "https://imgur.com/wklkvKa",
-      "https://imgur.com/wklkvKa",
-      "https://imgur.com/wklkvKa",
+      "https://i.imgur.com/wklkvKa.jpg",
+      "https://i.imgur.com/wklkvKa.jpg",
+      "https://i.imgur.com/wklkvKa.jpg",
     ],
   },
   {
@@ -149,9 +149,9 @@ export const products: Product[] = [
     stock: 9,
     type: "product",
     image: [
-      "https://imgur.com/0G846g9",
-      "https://imgur.com/0G846g9",
-      "https://imgur.com/0G846g9",
+      "https://i.imgur.com/0G846g9.jpg",
+      "https://i.imgur.com/0G846g9.jpg",
+      "https://i.imgur.com/0G846g9.jpg",
     ],
   },
   {
@@ -166,9 +166,10 @@ export const products: Product[] = [
     stock: 7,
     type: "product",
     image: [
-      "https://imgur.com/3IMqKX5",
-      "https://imgur.com/3IMqKX5",
-      "https://imgur.com/3IMqKX5",
+      "https://i.imgur.com/3IMqKX5.jpg",
+      "https://i.imgur.com/3IMqKX5.jpg",
+      "https://i.imgur.com/3IMqKX5.jpg",
     ],
   },
 ];
+//Nota sobre Image: en las urls tuve que poner las urls para la imagen directa, no para la direccion de la pagina html ya que Image de next no reconoce otro formato.
