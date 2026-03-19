@@ -30,17 +30,22 @@ html{
 
 .animate-scrollBanner {
   animation: scrollBanner 40s linear infinite;
-  animation-play-state: running;
+
 }
 .animate-scrollBanner:hover {
   animation-play-state: paused;
 }
 
 @keyframes scrollBanner {
-  0% {
-    transform: translateX(0%);
+  from {
+    transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);/*para que el carousel recorra exactamente sin saltos extraños, debe recorrer la mitad justa de la pantalla y en ese momento se concatena con el loop que armamos en la vista*/
+  to {
+    transform: translateX(
+      calc(-200px * 5 - 8px * 10));
   }
 }
+/*
+CALCULO NECESARIO PARA QUE LA ANIMACION SEA CONTINUA SIN SALTOS:
+ancho de la tarjeta * cantidad de tarjetas - margenes y padings * cantidad de elementos contando los duplicados.
+*/

@@ -2,7 +2,7 @@ import { Product } from "../types/types";
 
 export const products: Product[] = [
   {
-    id: "1",
+    id: 1,
     name: "Producto 1",
     material: "Material 1",
     color: "Color 1",
@@ -19,7 +19,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "2",
+    id: 2,
     name: "Producto 2",
     material: "Material 2",
     color: "Color 2",
@@ -36,7 +36,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "3",
+    id: 3,
     name: "Producto 3",
     material: "Material 3",
     color: "Color 3",
@@ -53,7 +53,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "4",
+    id: 4,
     name: "Producto 4",
     material: "Material 4",
     color: "Color 4",
@@ -70,7 +70,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "5",
+    id: 5,
     name: "Producto 5",
     material: "Material 5",
     color: "Color 5",
@@ -87,7 +87,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "6",
+    id: 6,
     name: "Producto 6",
     material: "Material 6",
     color: "Color 6",
@@ -104,7 +104,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "7",
+    id: 7,
     name: "Producto 7",
     material: "Material 7",
     color: "Color 7",
@@ -121,7 +121,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "8",
+    id: 8,
     name: "Producto 8",
     material: "Material 8",
     color: "Color 8",
@@ -138,7 +138,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "9",
+    id: 9,
     name: "Producto 9",
     material: "Material 9",
     color: "Color 9",
@@ -155,7 +155,7 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "10",
+    id: 10,
     name: "Producto 10",
     material: "Material 10",
     color: "Color 10",

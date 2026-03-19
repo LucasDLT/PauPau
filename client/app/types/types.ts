@@ -4,7 +4,7 @@ export interface AppStore{
     product:Product[]
 }
 export interface Product{
-id:string,
+id:number,
 name:string, 
 material:string,
 color:string,
