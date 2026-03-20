@@ -4,16 +4,18 @@ import Image from "next/image";
 export const NavbarMobile = () => {
   const { isOpen, setIsOpen } = useUI();
 
-  const handleNavigate = (id:string)=>{
-    setIsOpen(false)
+  const handleNavigate = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    setIsOpen(false);
     setTimeout(() => {
-      const element= document.getElementById(id)
-      element?.scrollIntoView({behavior:"smooth"})
-    },300)
-  }
+      const element = document.getElementById(id);
+      element?.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${id}`);
+    }, 400);
+  };
   return (
     <nav
-      className={`flex flex-col gap-20 fixed top-0 w-full h-full z-50 text-black transition-all duration-900 backdrop-blur-3xl ${isOpen ? "opacity-100 translate-y-[0%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:justify-center md:backdrop-blur-xs md:h-8`}
+      className={`flex flex-col gap-10 fixed top-0 w-full h-full z-50 text-black transition-all duration-900 backdrop-blur-3xl ${isOpen ? "opacity-100 translate-y-[0%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:justify-center md:items-center md:backdrop-blur-none md:h-8`}
     >
       <div
         className={`flex items-center justify-center transition-transform ease-in-out duration-900 scale-0 md:hidden
@@ -28,18 +30,35 @@ export const NavbarMobile = () => {
           className="hover:cursor-pointer md:hidden"
         />
       </div>
-      <ul className=" z-10 flex flex-col justify-around items-center  Julius-Sans-One text-3xl gap-20 md:flex-row md:text-sm md:justify-evenly md:gap-10">
-        <li className="hover:cursor-pointer" onClick={()=>handleNavigate("home")}>
-          Inicio
+      <ul className=" z-10 flex flex-col justify-around items-center  Julius-Sans-One text-3xl gap-13 md:flex-row md:text-sm md:justify-evenly md:rounded-full md:backdrop-blur-xs md:h-7  md:gap-10 md:bg-olive-400/30 md:w-150">
+        <li>
+          <a
+            href="#home"
+            onClick={(e) => handleNavigate(e, "home")}
+            className="hover:cursor-pointer"
+          >
+            Inicio
+          </a>
         </li>
-        <li className="hover:cursor-pointer" onClick={()=>handleNavigate("products")}>
-          Articulos
+        <li className="hover:cursor-pointer">
+          <a href="#products" onClick={(e) => handleNavigate(e, "products")}>
+            Articulos
+          </a>
         </li>
-        <li className="hover:cursor-pointer" onClick={()=>handleNavigate("about")}>
-          Sobre mi
+        <li className="hover:cursor-pointer">
+          <a href="#projects" onClick={(e) => handleNavigate(e, "projects")}>
+            Proyectos
+          </a>
         </li>
-        <li className="hover:cursor-pointer" onClick={()=>handleNavigate("contact")}>
-          Contacto
+        <li className="hover:cursor-pointer">
+          <a href="#about" onClick={(e) => handleNavigate(e, "about")}>
+            Sobre mi
+          </a>
+        </li>
+        <li className="hover:cursor-pointer">
+          <a href="#contact" onClick={(e) => handleNavigate(e, "contact")}>
+            Contactame
+          </a>
         </li>
       </ul>
     </nav>

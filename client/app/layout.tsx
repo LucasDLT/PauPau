@@ -58,7 +58,7 @@ export default function RootLayout({
           <UIProvider>
             <NavbarMobile/>
             <Sidebar />
-            <div className="pl-8.75 pr-8.75">{children}</div> 
+            <div className="pl-12 pr-12">{children}</div> 
             <LateralBar />
           </UIProvider>
         </ContextProvider>
