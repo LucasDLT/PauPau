@@ -26,6 +26,11 @@ html{
   font-family: var(--Thasadith);
 }
 
+/*letra de texto section-project*/
+.Alan-Sans{
+  font-family: var(--Alan-Sans);
+}
+
 /*animacion carousel de proyectos*/
 
 .animate-scrollBanner {
@@ -42,10 +47,11 @@ html{
   }
   to {
     transform: translateX(
-      calc(-200px * 5 - 8px * 10));
+      calc(-200px * var(--items)))
   }
 }
 /*
-CALCULO NECESARIO PARA QUE LA ANIMACION SEA CONTINUA SIN SALTOS:
+CALCULO NECESARIO PARA QUE LA ANIMACION SEA CONTINUA SIN SALTOS PERO UTILIZA VALORES FIJOS:
 ancho de la tarjeta * cantidad de tarjetas - margenes y padings * cantidad de elementos contando los duplicados.
+CALCULO DINAMICO ES calc(-200px * var(--items))) items es el length del array y el array hay que duplicarlo hasta que quede fuera del viewport el salto
 */

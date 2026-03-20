@@ -4,6 +4,7 @@ import {
   Geist_Mono,
   Julius_Sans_One,
   Thasadith,
+  Alan_Sans
 } from "next/font/google";
 import "./globals.css";
 import { UIProvider } from "./UIProvider/contextUI";
@@ -21,6 +22,11 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const AlanSans = Alan_Sans({
+  weight: "500",
+  variable: "--Alan-Sans",
+})
 
 const JuliusSansOne = Julius_Sans_One({
   weight: "400",
@@ -45,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} ${thasadith.variable} antialiased
+        className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} ${thasadith.variable} ${AlanSans.variable} antialiased
         relative  bg-[url('/backgroundApp-hight.jpg')] bg-no-repeat bg-cover bg-fixed  `}
       >
         <ContextProvider>

@@ -13,7 +13,7 @@ export const NavbarMobile = () => {
   }
   return (
     <nav
-      className={`flex flex-col gap-20 fixed top-0 w-full h-full z-50 text-black transition-all duration-900 backdrop-blur-3xl ${isOpen ? "opacity-100 translate-y-[0%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:justify-center md:backdrop-blur-3xl md:h-8`}
+      className={`flex flex-col gap-20 fixed top-0 w-full h-full z-50 text-black transition-all duration-900 backdrop-blur-3xl ${isOpen ? "opacity-100 translate-y-[0%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:justify-center md:backdrop-blur-xs md:h-8`}
     >
       <div
         className={`flex items-center justify-center transition-transform ease-in-out duration-900 scale-0 md:hidden

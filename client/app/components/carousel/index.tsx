@@ -1,18 +1,23 @@
 import { products } from "@/app/mock";
 import Image from "next/image";
 import { Loader } from "@/app/components/loaderProducts";
+import React from "react";
 
 export const CarouselProject = () => {
   const projects = products.filter((product) => product.type === "project");
-  const loopProjects = [...projects, ...projects];
+  const loopProjects = [...projects, ...projects, ...projects, ...projects];
+  const lengthItems = projects.length;
   return (
     <div className="flex items-center justify-center w-full overflow-hidden">
       {products ? (
         <ul
+        style={{
+          "--items": lengthItems,
+        }as React.CSSProperties}
          className="flex w-max animate-scrollBanner">
-          {[...loopProjects, ...loopProjects].map((c, i) => (
+          {loopProjects.map((c, i) => (
             <li
-              className="relative h-50 w-50 mx-2 hover:cursor-pointer shrink-0"
+              className="relative h-50 w-50 hover:cursor-pointer shrink-0"
               key={i}
             >
               <Image
