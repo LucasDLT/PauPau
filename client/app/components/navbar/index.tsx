@@ -41,7 +41,7 @@ export const NavbarMobile = () => {
           </a>
         </li>
         <li className="hover:cursor-pointer">
-          <a href="#products" onClick={(e) => handleNavigate(e, "products")}>
+          <a href="#articles" onClick={(e) => handleNavigate(e, "articles")}>
             Articulos
           </a>
         </li>

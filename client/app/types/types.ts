@@ -7,6 +7,7 @@ export interface Product{
 id:number,
 name:string, 
 material:string,
+description:string,
 color:string,
 price:number,
 size:string,
