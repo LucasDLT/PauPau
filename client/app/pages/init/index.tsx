@@ -3,9 +3,10 @@ import { useUI } from "@/app/UIProvider/contextUI";
 import Image from "next/image";
 
 export const Init = () => {
-  const { isOpen } = useUI();
+  const { isOpen, heroRef } = useUI();
   return (
     <main
+      ref={heroRef}
       id="home"
       className="min-h-dvh  md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_500px] md:pt-8 "
     >
