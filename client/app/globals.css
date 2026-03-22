@@ -55,15 +55,14 @@ CALCULO DINAMICO ES calc(-200px * var(--items))) items es el length del array y 
 /*
 animacion de entrada de items
 */
-li {
+.item {
   transform: scale3d( 0.1, 1, 0 );
   transition: all 0.6s ease-out;
 }
 
-li.visible {
+.item.visible {
   transform: scale3d( 1, 1, 2 );
     transition: all 0.6s ease-out;
-
 }
 
 /*reduccion y estilos generales del scrollbar*/

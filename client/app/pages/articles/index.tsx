@@ -56,7 +56,7 @@ export const Articles = () => {
             ref={(items) => {
               refItems.current[i] = items;
             }}
-            className={`relative h-150 w-full Thasadith font-extrabold gap-0.5 text-[20px] flex flex-col md:h-50 md:w-100 md:gap-2 md:text-[16px] md:flex-row md:bg-amber-900/20 md:rounded-2xl md:p-1  `}
+            className={`item relative h-150 w-full Thasadith font-extrabold gap-0.5 text-[20px] flex flex-col md:h-50 md:w-100 md:gap-2 md:text-[16px] md:flex-row md:bg-amber-900/20 md:rounded-2xl md:p-1  `}
           >
             <Image
               height={400}
