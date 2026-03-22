@@ -5,29 +5,27 @@
   --foreground: #171717;
 }
 
-
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-  } 
+  }
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
 /*letra del nav mobile*/
-.Julius-Sans-One{
+.Julius-Sans-One {
   font-family: var(--Julius-Sans-One);
 }
 /*letra de textos generales*/
-.Thasadith{
+.Thasadith {
   font-family: var(--Thasadith);
 }
 
 /*letra de texto section-project*/
-.Alan-Sans{
+.Alan-Sans {
   font-family: var(--Alan-Sans);
 }
 
@@ -35,7 +33,6 @@ html{
 
 .animate-scrollBanner {
   animation: scrollBanner 40s linear infinite;
-
 }
 .animate-scrollBanner:hover {
   animation-play-state: paused;
@@ -46,8 +43,7 @@ html{
     transform: translateX(0);
   }
   to {
-    transform: translateX(
-      calc(-200px * var(--items)))
+    transform: translateX(calc(-200px * var(--items)));
   }
 }
 /*
@@ -55,3 +51,30 @@ CALCULO NECESARIO PARA QUE LA ANIMACION SEA CONTINUA SIN SALTOS PERO UTILIZA VAL
 ancho de la tarjeta * cantidad de tarjetas - margenes y padings * cantidad de elementos contando los duplicados.
 CALCULO DINAMICO ES calc(-200px * var(--items))) items es el length del array y el array hay que duplicarlo hasta que quede fuera del viewport el salto
 */
+
+/*
+animacion de entrada de items
+*/
+li {
+  transform: scale3d( 0.1, 1, 0 );
+  transition: all 0.6s ease-out;
+}
+
+li.visible {
+  transform: scale3d( 1, 1, 2 );
+    transition: all 0.6s ease-out;
+
+}
+
+/*reduccion y estilos generales del scrollbar*/
+::-webkit-scrollbar-track {
+  background: #9a85a771;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #3e3e3e;
+  border-radius: 10px;
+}
