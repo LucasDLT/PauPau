@@ -30,7 +30,7 @@ export const NavbarMobile = () => {
           className="hover:cursor-pointer md:hidden"
         />
       </div>
-      <ul className=" z-10 flex flex-col justify-around items-center  Julius-Sans-One text-3xl gap-13 md:flex-row md:text-sm md:justify-evenly md:rounded-full md:backdrop-blur-xs md:h-7  md:gap-10 md:bg-olive-400/30 md:w-150">
+      <ul className=" z-10 flex flex-col justify-around items-center  Julius-Sans-One text-3xl gap-13 md:flex-row md:text-sm md:justify-evenly md:rounded-full md:backdrop-blur-xs md:h-7  md:gap-10 md:bg-linear-to-b to-slate-900/10 via-slate-500/5 from-slate-900/0 md:w-150">
         <li>
           <a
             href="#home"
