@@ -7,7 +7,7 @@ export const AboutMe = () => {
         <p>Sobre Mi</p>
       </div>
 
-      <p className="relative z-10 h-full flex items-center  bg-linear-to-b to-slate-900/0 via-slate-100/60 from-slate-900/0 p-1 text-justify font-black Thasadith  md:row-start-2">
+      <p className="relative z-10 h-full flex items-center  bg-linear-to-b to-slate-900/0 via-slate-100/60 from-slate-900/0 p-1 text-justify font-black Thasadith md:bg-linear-to-b md:to-slate-900/0 md:via-slate-600/30 md:from-slate-900/0 md:row-start-2">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae qui cum
         culpa obcaecati ab consectetur odio voluptates cumque officiis animi!
         Voluptates ea ratione fugit incidunt aliquam necessitatibus hic autem
