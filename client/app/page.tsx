@@ -4,6 +4,7 @@ import { Articles } from "./pages/articles";
 import { SectionText } from "./components/sectionText";
 import { AboutMe } from "./pages/about";
 import { BuyMethodSection } from "./components/buyMethods";
+import { ContactSection } from "./pages/contact";
 export default function Home() {
   return (
     <>
@@ -13,6 +14,7 @@ export default function Home() {
       <Articles />
       <AboutMe />
       <BuyMethodSection />
+      <ContactSection />
     </>
   );
 }
