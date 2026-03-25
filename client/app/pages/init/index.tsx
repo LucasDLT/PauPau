@@ -1,4 +1,5 @@
 "use client";
+import { Video } from "@/app/components/video";
 import { useUI } from "@/app/UIProvider/contextUI";
 import Image from "next/image";
 
@@ -8,15 +9,16 @@ export const Init = () => {
     <main
       ref={heroRef}
       id="home"
-      className="min-h-dvh  md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_500px] md:pt-8 "
+      className="min-h-dvh  md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_1fr_500px] md:pt-8 "
     >
-      <div className="hidden md:block md:relative md:hover:cursor-pointer md:col-start-2  md:row-span-3">
-        <Image
+      <div className="hidden md:block md:relative md:hover:cursor-pointer md:col-start-2 md:col-span-2 md:row-span-3 md:self-center-safe md:justify-self-end   ">
+        {/*<Image
           fill
           alt="Ilustracion de proyecto en ceramica"
           src={"/imagen home.png"}
           className=""
-        />
+        />*/}
+        <Video/>
       </div>
 
       <div
