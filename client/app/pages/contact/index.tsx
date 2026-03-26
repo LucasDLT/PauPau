@@ -19,21 +19,22 @@ export const ContactSection = () => {
 "
         ></Image>
       </div>
-      <div className="hidden md:block md:row-span-3   md:mask-[linear-gradient(to_bottom,black_70%,transparent)] md:col-start-1 md:justify-self-start md:self-end">
+      <div className="hidden md:block md:row-span-3   md:mask-[linear-gradient(to_bottom,black_70%,transparent)] md:col-start-1 md:justify-self-start md:self-end md:max-w-65 md:w-full">
         <Image
           src={"/contact.jpg"}
           alt="imagen lateral en seccion contacto"
-          className="h-100 w-100 rounded-se-full"
+          className="h-auto w-full rounded-se-full "
           height={300}
           width={300}
         ></Image>
       </div>
-      <div className="hidden md:block md:row-span-3  relative md:mask-[linear-gradient(to_top,black_70%,transparent)] md:w-100 md:h-100 md:col-start-3 md:justify-self-end md:self-start">
+      <div className="hidden md:block md:row-span-3 md:mask-[linear-gradient(to_top,black_70%,transparent)] md:max-w-65 md:w-full md:col-start-3 md:justify-self-end md:self-start">
         <Image
           src={"/contact2.jpg"}
           alt="imagen lateral en seccion contacto"
-          className="scale-x-[-1] rounded-ee-full"
-          fill
+          className="h-auto w-full rounded-br-full scale-x-[-1]"
+          height={300}
+          width={300}
         ></Image>
       </div>
       <form

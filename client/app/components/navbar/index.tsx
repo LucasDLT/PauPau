@@ -1,8 +1,20 @@
 "use client";
 import { useUI } from "@/app/UIProvider/contextUI";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 export const NavbarMobile = () => {
   const { isOpen, setIsOpen } = useUI();
+  const [isInCart, setIsInCart] = useState<boolean>(false);
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === "/cart") {
+      setIsInCart(true);
+    } else {
+      setIsInCart(false);
+    }
+  }, []);
+
 
   const handleNavigate = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
@@ -15,7 +27,7 @@ export const NavbarMobile = () => {
   };
   return (
     <nav
-      className={`flex flex-col gap-10 fixed top-0 w-full h-full z-50 text-black transition-all duration-900 backdrop-blur-3xl ${isOpen ? "opacity-100 translate-y-[0%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:justify-center md:items-center md:backdrop-blur-none md:h-8`}
+      className={`flex flex-col gap-10 fixed top-0 w-full h-full z-50 text-black transition-all duration-900 backdrop-blur-3xl ${isOpen ? "opacity-100 translate-y-[0%]" : "opacity-0 translate-y-[250%] "} md:opacity-100 md:translate-y-[0%] md:justify-center md:items-center md:backdrop-blur-none md:h-8  ${isInCart ? "md:hidden" : ""} `}
     >
       <div
         className={`flex items-center justify-center transition-transform ease-in-out duration-900 scale-0 md:hidden

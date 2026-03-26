@@ -1,11 +1,17 @@
 'use client';
 import Image from "next/image";
 import { useUI } from "@/app/UIProvider/contextUI";
+import { useRouter } from "next/navigation";
+
 export const LateralBar = () => {
     const {isOpen, setIsOpen} = useUI()
+    const router = useRouter()
   const handleOpenMenu = () => {
     setIsOpen(!isOpen);
   };
+  const navigateToCart = () => {
+    router.replace("/cart")
+  }
   return (
     <div
       className="flex flex-col bg-cyan-300/10 items-center justify-between py-1 z-51 fixed top-0 right-0 w-12 h-dvh md:z-100"
@@ -34,6 +40,7 @@ export const LateralBar = () => {
         src={"/cart.png"}
         alt="icono de carrito con redireccion"
         className="hover:cursor-pointer"
+        onClick={navigateToCart}
       />
       <Image
         width={30}
