@@ -11,7 +11,7 @@ export const Init = () => {
       id="home"
       className="min-h-dvh  md:grid md:grid-rows-[30px_auto_1fr] md:grid-cols-[1fr_1fr_500px] md:pt-8 "
     >
-      <div className="hidden md:block md:relative md:hover:cursor-pointer md:col-start-2 md:col-span-2 md:row-span-3 md:self-center-safe md:justify-self-end   ">
+      <div className="hidden md:block md:relative  md:col-start-2 md:col-span-2 md:row-span-3 md:self-center-safe md:justify-self-end   ">
         {/*<Image
           fill
           alt="Ilustracion de proyecto en ceramica"
