@@ -1,27 +1,33 @@
 "use client";
 import { useUI } from "@/app/UIProvider/contextUI";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 export const NavbarMobile = () => {
   const { isOpen, setIsOpen } = useUI();
   const [isInCart, setIsInCart] = useState<boolean>(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
-    const path = window.location.pathname;
-    if (path === "/cart") {
+    if (pathname === "/cart") {
       setIsInCart(true);
     } else {
       setIsInCart(false);
     }
-  }, []);
-
+  }, [pathname]);
 
   const handleNavigate = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     setIsOpen(false);
+
     setTimeout(() => {
       const element = document.getElementById(id);
       element?.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (pathname === "/cart") {
+        router.push(`/#${id}`);
+        return;
+      }
       window.history.pushState(null, "", `#${id}`);
     }, 400);
   };
