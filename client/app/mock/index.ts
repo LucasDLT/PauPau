@@ -13,6 +13,7 @@ export const products: Product[] = [
     finished: "Finished 1",
     stock: 10,
     type: "project",
+    subtotal:0,
     image: [
       "https://i.imgur.com/QXy2DNO.jpg",
       "https://i.imgur.com/QXy2DNO.jpg",
@@ -31,6 +32,7 @@ export const products: Product[] = [
     finished: "Finished 2",
     stock: 20,
     type: "project",
+    subtotal:0,
     image: [
       "https://i.imgur.com/4Y5Zml7.jpg",
       "https://i.imgur.com/4Y5Zml7.jpg",
@@ -49,6 +51,7 @@ export const products: Product[] = [
     finished: "Finished 3",
     stock: 20,
     type: "project",
+    subtotal:0,
     image: [
       "https://i.imgur.com/ABL6VVK.jpg",
       "https://i.imgur.com/ABL6VVK.jpg",
@@ -67,6 +70,7 @@ export const products: Product[] = [
     finished: "Finished 4",
     stock: 15,
     type: "project",
+    subtotal:0,
     image: [
       "https://i.imgur.com/vJIOEKU.jpg",
       "https://i.imgur.com/vJIOEKU.jpg",
@@ -85,6 +89,7 @@ export const products: Product[] = [
     finished: "Finished 5",
     stock: 18,
     type: "project",
+    subtotal:0,
     image: [
       "https://i.imgur.com/KOzRVFE.jpg",
       "https://i.imgur.com/KOzRVFE.jpg",
@@ -103,6 +108,7 @@ export const products: Product[] = [
     finished: "Finished 6",
     stock: 12,
     type: "product",
+    subtotal:0,
     image: [
       "https://i.imgur.com/KOzRVFE.jpg",
       "https://i.imgur.com/KOzRVFE.jpg",
@@ -121,6 +127,7 @@ export const products: Product[] = [
     finished: "Finished 7",
     stock: 10,
     type: "product",
+    subtotal:0,
     image: [
       "https://i.imgur.com/8joA5HP.jpg",
       "https://i.imgur.com/8joA5HP.jpg",
@@ -139,6 +146,7 @@ export const products: Product[] = [
     finished: "Finished 8",
     stock: 14,
     type: "product",
+    subtotal:0,
     image: [
       "https://i.imgur.com/wklkvKa.jpg",
       "https://i.imgur.com/wklkvKa.jpg",
@@ -157,6 +165,7 @@ export const products: Product[] = [
     finished: "Finished 9",
     stock: 9,
     type: "product",
+    subtotal:0,
     image: [
       "https://i.imgur.com/0G846g9.jpg",
       "https://i.imgur.com/0G846g9.jpg",
@@ -175,6 +184,7 @@ export const products: Product[] = [
     finished: "Finished 10",
     stock: 7,
     type: "product",
+    subtotal:0,
     image: [
       "https://i.imgur.com/3IMqKX5.jpg",
       "https://i.imgur.com/3IMqKX5.jpg",

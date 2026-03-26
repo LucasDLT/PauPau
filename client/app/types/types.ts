@@ -15,6 +15,7 @@ weight:string,
 finished:string,
 stock:number,
 type:TypeProduct,
+subtotal:number,
 image:string[]
 }
 
