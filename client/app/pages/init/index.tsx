@@ -18,7 +18,7 @@ export const Init = () => {
           src={"/imagen home.png"}
           className=""
         />*/}
-        <Video/>
+        {/*<Video/>*/}
       </div>
 
       <div

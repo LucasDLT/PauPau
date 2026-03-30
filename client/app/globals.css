@@ -106,8 +106,8 @@ animacion de entrada de items
 .custom-checkbox::before {
   content: "";
   position: absolute;
-  width: 12px;
-  height: 11px;
+  width: 5px;
+  height: 6px;
   background: black;
   border-radius: 50%;
   text-align: center;
@@ -119,4 +119,11 @@ animacion de entrada de items
 
 .custom-checkbox:checked::before {
   transform: translate(-50%, -50%) scale(1);
+}
+
+/*estilos para los inputs del formulario de envio del pedido*/
+
+.custom-input:focus{
+  outline: none;
+  border:none
 }
