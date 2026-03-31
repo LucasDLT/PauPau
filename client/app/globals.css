@@ -125,5 +125,6 @@ animacion de entrada de items
 
 .custom-input:focus{
   outline: none;
-  border:none
+  border:none;
+  background-color: transparent;
 }

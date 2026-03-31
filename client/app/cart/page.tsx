@@ -9,20 +9,28 @@ export default function CartPage() {
   };
   return (
     //contenedor general del carrito
-    <section className="h-dvh Julius-Sans-One grid grid-cols-1 grid-rows-[20px_1fr_70px_auto] pb-10 gap-10">
-      <button onClick={handleGoBack}><Image src={'/circulo-flecha.png'} alt="flecha hacia atras" height={30} width={30} className="rotate-180 hover:cursor-pointer" /></button>
+    <section className="h-dvh Julius-Sans-One grid grid-cols-1 grid-rows-[20px_1fr_70px_auto] pb-10 gap-10 md:grid-rows-[20px_1fr_70px_450px]">
+      <button onClick={handleGoBack}>
+        <Image
+          src={"/circulo-flecha.png"}
+          alt="flecha hacia atras"
+          height={30}
+          width={30}
+          className="rotate-180 hover:cursor-pointer md:justify-self-end"
+        />
+      </button>
 
-      <div className=" overflow-y-auto h-200 Alan-Sans">
+      <div className=" overflow-y-auto h-200 Alan-Sans md:h-80">
         {products.map((item, i) => (
           <div key={i} className="border-b">
             <div className="flex justify-between items-center ">
-              <div className="flex flex-col m-1 rounded">
+              <div className="flex flex-col m-1 rounded md:items-center">
                 <Image
                   src={`${item.image}`}
                   alt={item.name}
                   height={100}
                   width={100}
-                  className=""
+                  className="md:h-10 md:w-10"
                 />
                 <div className="flex justify-around rounded  p-1">
                   <button className="bg-olive-500/30 text-center rounded hover:cursor-pointer p-1">
@@ -65,52 +73,63 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="flex flex-col justify-around items center Alan-Sans text-sm text-center">
-        <button className="border p-1 rounded hover:cursor-pointer">AGREGAR MAS PRODUCTOS</button>
-        <p className="border p-1 rounded">TOTAL:10000</p>
+      <div className="flex flex-col justify-around items center Alan-Sans text-sm text-center md:flex-row md:justify-between md:items-center">
+        <button className="border p-1 rounded hover:cursor-pointer">
+          AGREGAR MAS PRODUCTOS
+        </button>
+        <p className="border p-1 rounded ">TOTAL:10000</p>
       </div>
 
-      <form action="submit" className="font-black flex flex-col gap-8 pb-10">
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Nombre</label>
-          <input type="text" className="custom-input font-light" />
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Apellido</label>
-          <input type="text" className="custom-input font-light" />
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">DNI</label>
-          <input type="text" className="custom-input font-light" />
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Pais/Region</label>
-          <input type="text" className="custom-input font-light"/>
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Localidad/Ciudad</label>
-          <input type="text" className="custom-input font-light"/>
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Direccion</label>
-          <input type="text" className="custom-input font-light" />
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Telefono</label>
-          <input type="text" className="custom-input font-light"/>
-        </div>
-        <div  className="border-b flex gap-2">
-          <label htmlFor="">Email</label>
-          <input type="text" className="custom-input font-light"/>
-        </div>
-        <div className="flex flex-col h-40">
-          <label htmlFor="">Informacion Adicional</label>
-          <textarea name="" id=""   className="border rounded h-30 backdrop-blur-xs text-[12px] custom-input font-light "></textarea>
+      <form
+        action="submit"
+        className="font-black grid grid-cols-1 grid-rows-3 gap-8 pb-10 md:grid-rows-2 md:grid-cols-[800px_400px]"
+      >
+        <div className="md:col-start-1 md:grid md:gap-6 ">
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Nombre</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Apellido</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">DNI</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Pais/Region</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Localidad/Ciudad</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Direccion</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Telefono</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="border-b flex gap-2">
+            <label htmlFor="">Email</label>
+            <input type="text" className="custom-input font-light" />
+          </div>
+          <div className="flex flex-col h-40">
+            <label htmlFor="">Informacion Adicional</label>
+            <textarea
+              name=""
+              id=""
+              className="border rounded h-30 backdrop-blur-xs text-[12px] custom-input font-light "
+            ></textarea>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-1 text-[14px]">
+        <div className="flex flex-col gap-1 text-[14px] md:col-start-2 ">
           <div className="checkbox-item border rounded-full flex justify-between items-center h-6 px-2">
-            <label htmlFor="encuentro" >punto de encuentro sin costo</label>
+            <label htmlFor="encuentro">punto de encuentro sin costo</label>
             <input type="checkbox" id="encuentro" className="custom-checkbox" />
           </div>
 
@@ -119,7 +138,7 @@ export default function CartPage() {
             <input type="checkbox" id="envio" className="custom-checkbox" />
           </div>
         </div>
-        <button className="Alan-Sans border rounded">ENVIAR PEDIDO</button>
+        <button className="Alan-Sans border rounded md:col-start-2 md:row-start-2 md:h-8 md:hover:cursor-pointer">ENVIAR PEDIDO</button>
       </form>
     </section>
   );
