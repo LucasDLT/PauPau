@@ -10,7 +10,7 @@ export const NavbarMobile = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (pathname === "/cart") {
+    if (pathname === "/cart" || pathname === "/detailItem/Detail") {
       setIsInCart(true);
     } else {
       setIsInCart(false);

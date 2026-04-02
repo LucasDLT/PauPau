@@ -1,10 +1,10 @@
-import { Init } from "./pages/init";
-import { ProjectSection } from "./pages/project_section";
-import { Articles } from "./pages/articles";
+import { Init } from "./views/init";
+import { ProjectSection } from "./views/project_section";
+import { Articles } from "./views/articles";
 import { SectionText } from "./components/sectionText";
-import { AboutMe } from "./pages/about";
+import { AboutMe } from "./views/about";
 import { BuyMethodSection } from "./components/buyMethods";
-import { ContactSection } from "./pages/contact";
+import { ContactSection } from "./views/contact";
 export default function Home() {
   return (
     <>
