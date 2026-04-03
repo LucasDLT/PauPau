@@ -1,12 +1,16 @@
- export default async function Detail ({params}:{params:Promise<{slugId:string}>}){
-    const {slugId}= await params
-    console.log(slugId);
-    console.log(params);
-    
-    return (
-        <div>
-            <h1>Detail Item {slugId}</h1>
-        </div>
-    );
-}
+import { ItemDetail } from "@/app/components/ItemDetail";
 
+export default async function Detail({
+  params,
+}: {
+  params: Promise<{ slugId: string }>;
+}) {
+  const { slugId } = await params;
+
+
+  return (
+<div>
+    <ItemDetail id={slugId} />
+</div>
+  );
+}
