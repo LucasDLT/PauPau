@@ -10,7 +10,7 @@ export const NavbarMobile = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (pathname === "/cart" || pathname === "/detailItem/Detail") {
+    if (pathname === "/cart" || pathname.startsWith("/detailItem/")) {
       setIsInCart(true);
     } else {
       setIsInCart(false);
@@ -24,7 +24,7 @@ export const NavbarMobile = () => {
     setTimeout(() => {
       const element = document.getElementById(id);
       element?.scrollIntoView({ behavior: "smooth", block: "start" });
-      if (pathname === "/cart") {
+      if (pathname === "/cart" || pathname.startsWith("/detailItem/")) {
         router.push(`/#${id}`);
         return;
       }

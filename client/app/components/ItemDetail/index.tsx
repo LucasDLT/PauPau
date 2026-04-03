@@ -16,7 +16,7 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
     (product: Product) => product.id === Number(id),
   );
   const handleGoBack = () => {
-    router.replace("/");
+    router.push(`/#articles`);
   };
 
   const handleIndexInView = (id: number) => {
@@ -33,8 +33,9 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
     );
   }
   return (
-    <section className="grid grid-cols-1  grid-rows-[50px_1fr] h-dvh Alan-Sans ">
-      <button onClick={handleGoBack}>
+    <section className="grid grid-cols-1  grid-rows-[50px_1fr] h-dvh Alan-Sans md:grid-cols-2 md:grid-rows-[30px_1fr] ">
+      <button onClick={handleGoBack}
+      className="md:col-start-2 md:row-start-1">
         <Image
           src={"/circulo-flecha.png"}
           alt="flecha hacia atras"
@@ -44,9 +45,9 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
         />
       </button>
       {product ? (
-        <div className=" grid grid-cols-1 grid-rows-[30px_300px_50px_1fr_40px_10px] gap-1">
-          <h1 className=" text-2xl bg-black/20 rounded-t-full text-center">{product.name}</h1>
-          <div className=" h-full bg-black/20 ">
+        <div className=" grid grid-cols-1 grid-rows-[30px_250px_50px_1fr_40px_10px] gap-1 md:col-span-2 md:row-span-2 md:grid-rows-[30px_250px_50px_40px_10px] md:grid-cols-[1fr_1fr] md:mt-10">
+          <h1 className=" text-2xl bg-black/20 rounded-t-full text-center md:col-start-2 md:row-start-1 md:bg-transparent">{product.name}</h1>
+          <div className="h-full bg-black/20 md:col-start-1 md:row-start-2  md:bg-transparent">
             <Image
               src={product.image[imageInView]}
               alt={`imagen de ${product.name}`}
@@ -55,8 +56,8 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
               className="h-full w-full object-contain"
             />
           </div>
-          <div className="flex justify-between items-center ">
-            <div className="flex justify-around items-center  bg-black/20 w-50 h-10 py-0.5 ">
+          <div className="flex justify-between items-center md:col-start-1 md:row-start-3">
+            <div className="flex justify-around items-center  bg-black/20 w-50 h-10 py-0.5  md:bg-transparent">
               {product.image.map((url, index) => (
                 <div className="flex justify-center items-center h-full  ">
                   <Image
@@ -71,10 +72,10 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
                 </div>
               ))}
             </div>
-            <p className="flex justify-center items-center bg-black/20 h-10 w-30"> ${product.price}</p>
+            <p className="flex justify-center items-center bg-black/20 h-10 w-30  md:bg-transparent"> ${product.price}</p>
           </div>
 
-          <div className="flex flex-col items-start justify-center gap-6 bg-linear-to-l to-slate-900/50 via-slate-100/10 from-yellow-900/10 rounded-b-sm p-1">
+          <div className="flex flex-col items-start justify-center gap-2 bg-linear-to-l to-slate-900/50 via-slate-100/10 from-yellow-900/10 rounded-b-sm p-1 md:col-start-2 md:row-start-2  md:bg-none ">
             <div className="flex items-start justify-center text-center w-full">
               <p>{product.description}</p>
             </div>
@@ -100,7 +101,7 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center w-full bg-black/20 rounded-b-xl h-full">
+          <div className="flex justify-center items-center w-full bg-black/20 rounded-b-xl h-full md:col-start-2 md:row-start-4  md:bg-transparent">
             <button className="border border-gray-900 hover:cursor-pointer rounded px-1 py-0.5 ">
               AGREGAR AL CARRITO
             </button>
