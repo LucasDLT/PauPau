@@ -1,7 +1,8 @@
 import { CarouselProject } from "@/app/components/carousel";
 export const ProjectSection = () => {
   return (
-    <section id="projects" className="h-dvh grid grid-cols-1 grid-rows-[300px_250px_200px] text-4xl  text-center place-items-center backdrop-blur-xl md:pt-8 md:grid-rows-[300px_200px_200px]">
+    <section id="projects" 
+    className="h-dvh grid grid-cols-1 grid-rows-[300px_250px_200px] text-4xl  text-center place-items-center backdrop-blur-xl md:grid-rows-[300px_200px_200px]">
       <p className="Julius-Sans-One text-3xl md:text-4xl">
         Estos son algunos de mis proyectos personales.
       </p>

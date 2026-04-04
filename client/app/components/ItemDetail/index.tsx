@@ -45,7 +45,7 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
         />
       </button>
       {product ? (
-        <div className=" grid grid-cols-1 grid-rows-[30px_250px_50px_1fr_40px_10px] gap-1 md:col-span-2 md:row-span-2 md:grid-rows-[30px_250px_50px_40px_10px] md:grid-cols-[1fr_1fr] md:mt-10">
+        <div className=" grid grid-cols-1 grid-rows-[30px_250px_50px_1fr_40px_10px] gap-1 md:col-span-2 md:row-span-2 md:grid-rows-[30px_350px_70px_40px_10px] md:grid-cols-[1fr_1fr] md:mt-10">
           <h1 className=" text-2xl bg-black/20 rounded-t-full text-center md:col-start-2 md:row-start-1 md:bg-transparent">{product.name}</h1>
           <div className="h-full bg-black/20 md:col-start-1 md:row-start-2  md:bg-transparent">
             <Image
@@ -56,8 +56,8 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
               className="h-full w-full object-contain"
             />
           </div>
-          <div className="flex justify-between items-center md:col-start-1 md:row-start-3">
-            <div className="flex justify-around items-center  bg-black/20 w-50 h-10 py-0.5  md:bg-transparent">
+          <div className="flex justify-between items-center md:col-start-1 md:row-start-3 md:justify-center">
+            <div className="flex justify-around items-center  bg-black/20 w-50 h-10 py-0.5  md:bg-transparent md:border md:border-gray-500 md:rounded-full md:h-15 md:w-70">
               {product.image.map((url, index) => (
                 <div className="flex justify-center items-center h-full  ">
                   <Image
@@ -67,7 +67,7 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
                     height={100}
                     width={100}
                     onClick={() => handleIndexInView(index)}
-                    className={`transition duration-300 ease-in-out ${imageInView === index && "scale-104 bg-linear-to-b to-yellow-200/60 via-yellow-300/30 from-orange-300/60 rounded-full"} hover:cursor-pointer h-full w-full object-contain`}
+                    className={`transition duration-300 ease-in-out ${imageInView === index && "scale-104 bg-linear-to-b to-yellow-200/80 via-yellow-300/70 from-orange-300/80 rounded-full  border-red-900/50 border "} hover:cursor-pointer h-full w-full object-contain`}
                   />
                 </div>
               ))}

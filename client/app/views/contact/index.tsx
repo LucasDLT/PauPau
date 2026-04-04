@@ -6,19 +6,7 @@ export const ContactSection = () => {
       id="contact"
       className=" relative h-dvh grid grid-cols-1 grid-rows-[60px_1fr_60px]  md:static md:pt-8 md:grid-cols-[1fr_1fr_1fr]"
     >
-      <div className="row-start-1 md:hidden">
-        <Image
-          src={"/backgroundContact.jpg"}
-          alt="imagen de fondo seccion contacto"
-          height={200}
-          width={200}
-          className="
-  z-0 h-full w-full absolute object-cover
-  mask-[linear-gradient(to_bottom,transparent_0%,black_30%,black_90%,transparent_100%)]
- 
-"
-        ></Image>
-      </div>
+
       <div className="hidden md:block md:row-span-3   md:mask-[linear-gradient(to_bottom,black_70%,transparent)] md:col-start-1 md:justify-self-start md:self-end md:max-w-65 md:w-full">
         <Image
           src={"/contact.jpg"}
@@ -39,7 +27,7 @@ export const ContactSection = () => {
       </div>
       <form
         method="post"
-        className="row-start-2 flex flex-col z-10 items-center justify-around rounded m-2 Thasadith font-black bg-blue-500/20 
+        className="row-start-2 flex flex-col z-10 items-center justify-around rounded m-2 Thasadith font-black bg-linear-to-b from-blue-500/30 via-blue-300/20 to-slate-500/40 backdrop-blur-[3px] 
 md:bg-transparent
 md:bg-linear-to-b 
 md:from-red-900/5 
