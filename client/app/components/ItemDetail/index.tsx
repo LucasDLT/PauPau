@@ -4,6 +4,7 @@ import { Product } from "@/app/types/types";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {useAppContext} from "@/app/context/context";
 
 interface ItemDetailProps {
   id: string;
@@ -12,6 +13,7 @@ interface ItemDetailProps {
 export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
   const [imageInView, setImageInView] = useState<number>(0);
   const router = useRouter();
+  const {handleAddItem} = useAppContext()
   const product = products.find(
     (product: Product) => product.id === Number(id),
   );
@@ -102,7 +104,8 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
           </div>
 
           <div className="flex justify-center items-center w-full bg-black/20 rounded-b-xl h-full md:col-start-2 md:row-start-4  md:bg-transparent">
-            <button className="border border-gray-900 hover:cursor-pointer rounded px-1 py-0.5 ">
+            <button className="border border-gray-900 hover:cursor-pointer rounded px-1 py-0.5"
+            onClick={()=> handleAddItem(product.id)}>
               AGREGAR AL CARRITO
             </button>
           </div>

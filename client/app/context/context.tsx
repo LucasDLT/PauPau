@@ -1,7 +1,12 @@
 "use client";
 import { createContext, useState, ReactNode, useContext } from "react";
+import { AppStore, Cart, INITIAL_CART } from "../types/types";
 
-interface ContextProps {}
+interface ContextProps {
+  cart: Cart;
+  setCart: React.Dispatch<React.SetStateAction<Cart>>;
+  handleAddItem: (id:number) => void
+}
 interface ProviderProps {
   children: ReactNode;
 }
@@ -17,8 +22,29 @@ export const useAppContext = (): ContextProps => {
 };
 
 export const ContextProvider = ({ children }: ProviderProps) => {
+const [cart, setCart] = useState<Cart>(INITIAL_CART);
 
+const handleAddItem = (id:number) =>{
+ 
+  setCart((prev) => {
+    const idparsed = id.toString();
+    const itemExist = prev.listItems[idparsed] // esto me va a dar el item o undefined si no esta en el carrito
 
-  const value = {};
+    return{
+      ...prev,
+      listItems: {
+        ...prev.listItems,
+        [idparsed]:itemExist
+        ? {...itemExist, quantity: itemExist.quantity + 1}
+        : {productId:idparsed, quantity:1}
+      }
+    }
+    
+  });
+  
+}
+console.log(cart);
+
+  const value = { cart, setCart, handleAddItem };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

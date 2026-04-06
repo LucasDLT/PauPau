@@ -24,6 +24,10 @@ export interface Cart{
 timestamp:number,
 listItems:Record<string, CartItem>,
 }
+export const INITIAL_CART:Cart={
+ timestamp:0,
+ listItems:{}
+}
 export interface CartItem{
     productId:string,
     quantity:number
@@ -38,3 +42,5 @@ export  type CartViewItem = Product &{
     quantity:number,
     subtotal:number
 }
+
+//NOTA SOBRE CANTIDAD Y STOCK: hay que hacer un calculo para que cuanto mas proximo se este del final del stock el numero de la cantidad agregada al carrito se vuelva rojo<
