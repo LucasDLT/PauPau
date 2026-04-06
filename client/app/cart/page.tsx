@@ -73,9 +73,15 @@ export default function CartPage() {
         ))}
       </div>
 
-      <div className="flex flex-col justify-around items center Alan-Sans text-sm text-center md:flex-row md:justify-between md:items-center">
-        <button className="border p-1 rounded hover:cursor-pointer">
+      <div className="flex flex-col justify-around items center Alan-Sans text-sm text-center gap-2 md:flex-row md:justify-between md:items-center">
+        <button className="border p-1 rounded hover:cursor-pointer"
+        onClick={()=>{router.push(`/#articles`)}}>
           AGREGAR MAS PRODUCTOS
+        </button>
+        <button className="border p-1 rounded hover:cursor-pointer"
+        onClick={()=>{console.log("eliminado");
+        }}>
+          ELIMINAR LOS PRODUCTOS
         </button>
         <p className="border p-1 rounded ">TOTAL:10000</p>
       </div>
