@@ -5,7 +5,8 @@ import { AppStore, Cart, INITIAL_CART } from "../types/types";
 interface ContextProps {
   cart: Cart;
   setCart: React.Dispatch<React.SetStateAction<Cart>>;
-  handleAddItem: (id:number) => void
+  handleAddItem: (id: number) => void;
+  handleDeleteItem: (id: number) => void;
 }
 interface ProviderProps {
   children: ReactNode;
@@ -22,29 +23,44 @@ export const useAppContext = (): ContextProps => {
 };
 
 export const ContextProvider = ({ children }: ProviderProps) => {
-const [cart, setCart] = useState<Cart>(INITIAL_CART);
+  const [cart, setCart] = useState<Cart>(INITIAL_CART);
 
-const handleAddItem = (id:number) =>{
- 
-  setCart((prev) => {
-    const idparsed = id.toString();
-    const itemExist = prev.listItems[idparsed] // esto me va a dar el item o undefined si no esta en el carrito
+  //FN para agregar un item al carrito previa verificacion de existencia
+  const handleAddItem = (id: number) => {
+    setCart((prev) => {
+      const idparsed = id.toString();
+      const itemExist = prev.listItems[idparsed]; // esto me va a dar el item o undefined si no esta en el carrito
 
-    return{
-      ...prev,
-      listItems: {
-        ...prev.listItems,
-        [idparsed]:itemExist
-        ? {...itemExist, quantity: itemExist.quantity + 1}
-        : {productId:idparsed, quantity:1}
-      }
-    }
-    
-  });
+      return {
+        ...prev,
+        listItems: {
+          ...prev.listItems,
+          [idparsed]: itemExist
+            ? { ...itemExist, quantity: itemExist.quantity + 1 }
+            : { productId: idparsed, quantity: 1 },
+        },
+      };
+    });
+  };
+
+  const handleDeleteItem = (id: number) => {
+    setCart((prev) => {
+      const idParsed = id.toString();
+      const itemExist = prev.listItems[idParsed];
+      return {
+        ...prev,
+        listItems: {
+          ...prev.listItems,
+          [idParsed]: itemExist
+            ? { productId: "", quantity: 0 }
+            : { productId: "", quantity: 0 },
+        },
+      };
+    });
+  };
+
   
-}
-console.log(cart);
 
-  const value = { cart, setCart, handleAddItem };
+  const value = { cart, setCart, handleAddItem, handleDeleteItem };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

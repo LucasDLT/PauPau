@@ -1,6 +1,9 @@
-import { cart} from "@/app/mock";
+'use client'
+import { cart } from "@/app/mock";
 import Image from "next/image";
+import { useAppContext } from "@/app/context/context";
 export const ProductsCart = () => {
+  const { handleDeleteItem } = useAppContext();
   return (
     <div className=" overflow-y-auto h-200 Alan-Sans md:h-80">
       {cart.map((item, i) => (
@@ -24,7 +27,9 @@ export const ProductsCart = () => {
                   />
                 </button>
 
-                <p className="bg-gray-400/60 rounded w-10 text-center">{item.quantity}</p>
+                <p className="bg-gray-400/60 rounded w-10 text-center">
+                  {item.quantity}
+                </p>
                 <button className="bg-olive-500/30 text-center rounded hover:cursor-pointer  p-1">
                   <Image
                     src={"/arrow.png"}
@@ -42,7 +47,7 @@ export const ProductsCart = () => {
               <p>$ {item.price}</p>
               <p>$ {item.subtotal}</p>
             </div>
-            <button>
+            <button onClick={() => handleDeleteItem}>
               <Image
                 src={"/trash.png"}
                 alt={item.name}
