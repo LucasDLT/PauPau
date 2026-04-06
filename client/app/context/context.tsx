@@ -17,6 +17,8 @@ export const useAppContext = (): ContextProps => {
 };
 
 export const ContextProvider = ({ children }: ProviderProps) => {
+
+
   const value = {};
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

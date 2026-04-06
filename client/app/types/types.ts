@@ -15,7 +15,6 @@ weight:string,
 finished:string,
 stock:number,
 type:TypeProduct,
-subtotal:number,
 image:string[]
 }
 
@@ -24,7 +23,6 @@ type TypeProduct= "project" | "product"
 export interface Cart{
 timestamp:number,
 listItems:Record<string, CartItem>,
-total:number
 }
 export interface CartItem{
     productId:string,
@@ -32,6 +30,11 @@ export interface CartItem{
 }
 
 export const INITIAL_STATE:AppStore={
-    cart:{timestamp:0,listItems:{},total:0},
+    cart:{timestamp:0,listItems:{}},
     product:[]
+}
+
+export  type CartViewItem = Product &{
+    quantity:number,
+    subtotal:number
 }

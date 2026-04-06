@@ -1,9 +1,9 @@
-import { products } from "@/app/mock";
+import { cart} from "@/app/mock";
 import Image from "next/image";
 export const ProductsCart = () => {
   return (
     <div className=" overflow-y-auto h-200 Alan-Sans md:h-80">
-      {products.map((item, i) => (
+      {cart.map((item, i) => (
         <div key={i} className="border-b">
           <div className="flex justify-between items-center ">
             <div className="flex flex-col m-1 rounded md:items-center">
@@ -24,7 +24,7 @@ export const ProductsCart = () => {
                   />
                 </button>
 
-                <p className="bg-gray-400/60 rounded w-10 text-center">02</p>
+                <p className="bg-gray-400/60 rounded w-10 text-center">{item.quantity}</p>
                 <button className="bg-olive-500/30 text-center rounded hover:cursor-pointer  p-1">
                   <Image
                     src={"/arrow.png"}
