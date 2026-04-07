@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useAppContext } from "@/app/context/context";
 import {getCartView} from "@/app/helpers/index"
 export const ProductsCart = () => {
-  const { handleDeleteItem, handleIncrementItem, cart, app } = useAppContext();
+  const { handleDeleteItem, handleIncrementItem, handleDecrementItem, cart, app } = useAppContext();
   const  cartView  = getCartView(cart, app.product);
   return (
     <div className=" overflow-y-auto h-200 Alan-Sans md:h-80">
@@ -21,7 +21,8 @@ export const ProductsCart = () => {
               />
               <div className="flex justify-around rounded  p-1">
                 <button className="bg-olive-500/30 text-center rounded hover:cursor-pointer p-1"
-                >
+                onClick={()=>handleDecrementItem(item.id)}
+               >
                   <Image
                     src={"/arrow.png"}
                     alt={item.name}

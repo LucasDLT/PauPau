@@ -25,6 +25,7 @@ interface ContextProps {
   handleDeleteItem: (id: number) => void;
   handleDeleteCart: () => void;
   handleIncrementItem: (id: number) => void;
+  handleDecrementItem: (id: number) => void;
 }
 interface ProviderProps {
   children: ReactNode;
@@ -119,6 +120,37 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     });
   };
 
+  const handleDecrementItem = (id: number) => {
+    setCart((prev) => {
+      const idParsed = id.toString();
+      const currentItem = prev.listItems[idParsed];
+      const { [idParsed]: _, ...rest } = prev.listItems;
+
+
+      if (currentItem.quantity === 1) {
+        return{
+          ...prev,
+          listItems:rest
+        }
+      }
+
+
+        return {
+          ...prev,
+          listItems: {
+            ...prev.listItems,
+            [idParsed]: {
+              ...currentItem,
+              quantity: currentItem.quantity === 1
+                ? currentItem.quantity
+                : currentItem.quantity - 1,
+            },
+          },
+        };
+      
+    });
+  };
+
   useEffect(() => {
     setApp((prev) => {
       const currentProducts = normalizeProductsById(products);
@@ -138,6 +170,7 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     handleDeleteItem,
     handleDeleteCart,
     handleIncrementItem,
+    handleDecrementItem,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
