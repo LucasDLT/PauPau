@@ -6,17 +6,25 @@ import {
   useContext,
   useEffect,
 } from "react";
-import { AppStore, Cart, INITIAL_CART, INITIAL_STATE, Product, Products } from "../types/types";
+import {
+  AppStore,
+  Cart,
+  INITIAL_CART,
+  INITIAL_STATE,
+  Product,
+  Products,
+} from "../types/types";
 import { products } from "../mock";
 
 interface ContextProps {
   cart: Cart;
   setCart: React.Dispatch<React.SetStateAction<Cart>>;
-  app : AppStore;
+  app: AppStore;
   setApp: React.Dispatch<React.SetStateAction<AppStore>>;
   handleAddItem: (id: number) => void;
   handleDeleteItem: (id: number) => void;
   handleDeleteCart: () => void;
+  handleIncrementItem: (id: number) => void;
 }
 interface ProviderProps {
   children: ReactNode;
@@ -58,15 +66,10 @@ export const ContextProvider = ({ children }: ProviderProps) => {
   const handleDeleteItem = (id: number) => {
     setCart((prev) => {
       const idParsed = id.toString();
-      const itemExist = prev.listItems[idParsed];
+      const { [idParsed]: _, ...rest } = prev.listItems;
       return {
         ...prev,
-        listItems: {
-          ...prev.listItems,
-          [idParsed]: itemExist
-            ? { productId: "", quantity: 0 }
-            : { productId: "", quantity: 0 },
-        },
+        listItems: rest,
       };
     });
   };
@@ -76,22 +79,53 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     setCart(INITIAL_CART);
   };
 
-  const normalizeProductsById =(products:Product[]):Products=>{
-    const item:Products ={}
-     for (const element of products) {
-      const idParsed=element.id.toString()
-      item[idParsed]= element
+  const normalizeProductsById = (products: Product[]): Products => {
+    const item: Products = {};
+    for (const element of products) {
+      const idParsed = element.id.toString();
+      item[idParsed] = element;
     }
-    return item
-  }
+    return item;
+  };
+
+  const handleIncrementItem = (id: number) => {
+    setCart((prev) => {
+      const idParsed = id.toString();
+      const product = app.product[idParsed];
+      const existItem = prev.listItems[idParsed];
+
+      if (!existItem) {
+        return {
+          ...prev,
+          listItems: {
+            ...prev.listItems,
+            [idParsed]: { productId: idParsed, quantity: 1 },
+          },
+        };
+      }
+
+      const isSuperior = existItem.quantity < product.stock;
+
+      return {
+        ...prev,
+        listItems: {
+          ...prev.listItems,
+          [idParsed]: {
+            ...existItem,
+            quantity: isSuperior ? existItem.quantity + 1 : existItem.quantity,
+          },
+        },
+      };
+    });
+  };
 
   useEffect(() => {
     setApp((prev) => {
-      const currentProducts= normalizeProductsById(products)
-     return{
-      ...prev,
-      product:currentProducts
-     }
+      const currentProducts = normalizeProductsById(products);
+      return {
+        ...prev,
+        product: currentProducts,
+      };
     });
   }, []);
 
@@ -102,7 +136,8 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     app,
     setApp,
     handleDeleteItem,
-    handleDeleteCart
+    handleDeleteCart,
+    handleIncrementItem,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

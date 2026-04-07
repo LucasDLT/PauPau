@@ -2,16 +2,15 @@
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/context/context";
 
-interface PropsBtnsComponent {
-  total: number;
-}
 
-export const BtnTotalCart: React.FC<PropsBtnsComponent> = ({ total }) => {
+
+export const BtnTotalCart = () => {
   const router = useRouter();
   const { handleDeleteCart } = useAppContext();
   const handlegoToArticles = () => {
     router.push(`/#articles`);
   };
+  
   return (
     <div className="flex flex-col justify-around items center Alan-Sans text-sm text-center gap-2 md:flex-row md:justify-between md:items-center">
       <button
@@ -30,7 +29,7 @@ export const BtnTotalCart: React.FC<PropsBtnsComponent> = ({ total }) => {
       >
         ELIMINAR LOS PRODUCTOS
       </button>
-      <p className="border p-1 rounded ">TOTAL: ${total}</p>
+      <p className="border p-1 rounded ">TOTAL: </p>
     </div>
   );
 };

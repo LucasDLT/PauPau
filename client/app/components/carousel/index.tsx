@@ -1,10 +1,13 @@
+'use client';
 import { products } from "@/app/mock";
 import Image from "next/image";
 import { Loader } from "@/app/components/loaderProducts";
 import React from "react";
+import { useAppContext } from "@/app/context/context";
 
 export const CarouselProject = () => {
-  const projects = products.filter((product) => product.type === "project");
+  const {app} = useAppContext();
+  const projects = Object.values(app.product).filter((product) => product.type === "project");
   const loopProjects = [...projects, ...projects, ...projects, ...projects];
   const lengthItems = projects.length;
   return (

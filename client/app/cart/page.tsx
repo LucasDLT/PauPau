@@ -10,7 +10,7 @@ export default function CartPage() {
       <ButtonBack />
 
       <ProductsCart />
-      <BtnTotalCart total={10000} />
+      <BtnTotalCart />
       <p className="self-center text-center py-6 text-3xl  border-yellow-600 border-dashed border-y-2 font-black ">
         completa el formulario y envialo para coordinar pago y envio.
       </p>
