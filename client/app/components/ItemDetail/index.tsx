@@ -4,7 +4,8 @@ import { Product } from "@/app/types/types";
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import {useAppContext} from "@/app/context/context";
+import { useAppContext } from "@/app/context/context";
+import { Counter } from "../contador";
 
 interface ItemDetailProps {
   id: string;
@@ -12,8 +13,9 @@ interface ItemDetailProps {
 
 export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
   const [imageInView, setImageInView] = useState<number>(0);
+  const [count, setCount] = useState<number>(1);
   const router = useRouter();
-  const {handleAddItem} = useAppContext()
+  const { handleAddItem } = useAppContext();
   const product = products.find(
     (product: Product) => product.id === Number(id),
   );
@@ -22,8 +24,6 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
   };
 
   const handleIndexInView = (id: number) => {
-    console.log(id);
-
     setImageInView(id);
   };
 
@@ -35,9 +35,11 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
     );
   }
   return (
-    <section className="grid grid-cols-1  grid-rows-[50px_1fr] h-dvh Alan-Sans md:grid-cols-2 md:grid-rows-[30px_1fr] ">
-      <button onClick={handleGoBack}
-      className="md:col-start-2 md:row-start-1">
+    <section className="grid grid-cols-1  grid-rows-1 h-dvh Alan-Sans md:grid-cols-2 md:grid-rows-[30px_1fr] ">
+      <button
+        onClick={handleGoBack}
+        className="hidden md:block md:justify-self-start md:col-start-1 md:row-start-1"
+      >
         <Image
           src={"/circulo-flecha.png"}
           alt="flecha hacia atras"
@@ -47,8 +49,21 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
         />
       </button>
       {product ? (
-        <div className=" grid grid-cols-1 grid-rows-[30px_250px_50px_1fr_40px_10px] gap-1 md:col-span-2 md:row-span-2 md:grid-rows-[30px_350px_70px_40px_10px] md:grid-cols-[1fr_1fr] md:mt-10">
-          <h1 className=" text-2xl bg-black/20 rounded-t-full text-center md:col-start-2 md:row-start-1 md:bg-transparent">{product.name}</h1>
+        <div className="mt-1 grid grid-cols-1 grid-rows-[40px_230px_50px_1fr_40px] gap-1 md:col-span-2 md:row-span-2 md:grid-rows-[30px_350px_70px_100px_10px] md:grid-cols-[1fr_1fr] md:mt-10">
+          <div className="flex justify-around items-center bg-black/20 rounded-t-full text-center md:col-start-2 md:row-start-1 md:bg-transparent">
+            <button onClick={handleGoBack} className="md:hidden">
+              <Image
+                src={"/circulo-flecha.png"}
+                alt="flecha hacia atras"
+                height={30}
+                width={30}
+                className="rotate-180 hover:cursor-pointer md:justify-self-end"
+              />
+            </button>
+            <h1 className=" text-2xl text-center md:col-start-2 md:row-start-1 md:bg-transparent">
+              {product.name}
+            </h1>
+          </div>
           <div className="h-full bg-black/20 md:col-start-1 md:row-start-2  md:bg-transparent">
             <Image
               src={product.image[imageInView]}
@@ -58,8 +73,8 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
               className="h-full w-full object-contain"
             />
           </div>
-          <div className="flex justify-between items-center md:col-start-1 md:row-start-3 md:justify-center">
-            <div className="flex justify-around items-center rounded-r bg-black/20 w-50 h-10 py-0.5  md:bg-transparent md:border md:border-gray-500 md:rounded-full md:h-15 md:w-70">
+          <div className="flex justify-center items-center md:col-start-1 md:row-start-3 md:justify-center">
+            <div className="flex justify-around items-center  bg-black/20 w-full h-10 py-0.5 md:bg-olive/10 md:backdrop-blur-[5px]  md:rounded-full md:h-15 md:w-70">
               {product.image.map((url, index) => (
                 <div className="flex justify-center items-center h-full  ">
                   <Image
@@ -69,13 +84,11 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
                     height={100}
                     width={100}
                     onClick={() => handleIndexInView(index)}
-                    className={`transition duration-300 ease-in-out ${imageInView === index && "scale-104 bg-linear-to-b to-yellow-200/80 via-yellow-300/70 from-orange-300/80 rounded-full  border-red-900/50 border "} hover:cursor-pointer h-full w-full object-contain`}
+                    className={`transition duration-300 ease-in-out ${imageInView === index && "scale-104 bg-linear-to-b to-yellow-200/20 via-yellow-300/40 from-orange-300/40 rounded-full   "} hover:cursor-pointer h-full w-full object-contain`}
                   />
                 </div>
               ))}
             </div>
-            <h3 className="flex justify-center items-center bg-black/20 h-10 w-30 rounded  md:bg-transparent">{product.stock}</h3>
-            <p className="flex justify-center items-center bg-black/20 h-10 w-30  rounded-l md:bg-transparent"> ${product.price}</p>
           </div>
 
           <div className="flex flex-col items-start justify-center gap-2 bg-linear-to-l to-slate-900/50 via-slate-100/10 from-yellow-900/10 rounded-b-sm p-1 md:col-start-2 md:row-start-2  md:bg-none ">
@@ -102,11 +115,22 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
               <h5>PESO</h5>
               <p>{product.weight}</p>
             </div>
+            <div className="flex items-start justify-between w-full border-b">
+              <h5>STOCK</h5>
+              <p>{product.stock}</p>
+            </div>
+            <div className="flex items-start justify-between w-full border-b">
+              <h5>PRECIO</h5>
+              <p>{product.price}</p>
+            </div>
           </div>
 
-          <div className="flex justify-center items-center w-full bg-black/20 rounded-b-xl h-full md:col-start-2 md:row-start-4  md:bg-transparent">
-            <button className="border border-gray-900 hover:cursor-pointer rounded px-1 py-0.5"
-            onClick={()=> handleAddItem(product.id)}>
+          <div className="flex justify-evenly items-center w-full bg-black/20 rounded-b-xl h-full md:flex-col md:justify-around md:items-center  md:col-start-2 md:row-start-4  md:bg-transparent">
+            <Counter count={count} setCount={setCount} stock={product.stock} />
+            <button
+              className="border border-gray-900 hover:cursor-pointer rounded px-1 py-0.5 text-[14px]"
+              onClick={() => handleAddItem(product.id, count)}
+            >
               AGREGAR AL CARRITO
             </button>
           </div>

@@ -11,18 +11,16 @@ import {
   Cart,
   INITIAL_CART,
   INITIAL_STATE,
-  Product,
-  Products,
 } from "../types/types";
 import { products } from "../mock";
-import { getCartView, normalizeProductsById } from "../helpers";
+import { normalizeProductsById } from "../helpers";
 
 interface ContextProps {
   cart: Cart;
   setCart: React.Dispatch<React.SetStateAction<Cart>>;
   app: AppStore;
   setApp: React.Dispatch<React.SetStateAction<AppStore>>;
-  handleAddItem: (id: number) => void;
+  handleAddItem: (id: number, quantityItems: number) => void;
   handleDeleteItem: (id: number) => void;
   handleDeleteCart: () => void;
   handleIncrementItem: (id: number) => void;
@@ -47,18 +45,24 @@ export const ContextProvider = ({ children }: ProviderProps) => {
   const [cart, setCart] = useState<Cart>(INITIAL_CART);
 
   //FN para agregar un item al carrito previa verificacion de existencia
-  const handleAddItem = (id: number) => {
+  const handleAddItem = (id: number, quantityItems: number = 1) => {
     setCart((prev) => {
       const idparsed = id.toString();
       const itemExist = prev.listItems[idparsed]; // esto me va a dar el item o undefined si no esta en el carrito
+      const total = itemExist
+        ? itemExist.quantity + quantityItems
+        : quantityItems;
 
+      if (total > app.product[idparsed].stock) {
+        return prev;
+      }
       return {
         ...prev,
         listItems: {
           ...prev.listItems,
           [idparsed]: itemExist
-            ? { ...itemExist, quantity: itemExist.quantity + 1 }
-            : { productId: idparsed, quantity: 1 },
+            ? { ...itemExist, quantity: total }
+            : { productId: idparsed, quantity: quantityItems },
         },
       };
     });
@@ -80,7 +84,6 @@ export const ContextProvider = ({ children }: ProviderProps) => {
   const handleDeleteCart = () => {
     setCart(INITIAL_CART);
   };
-
 
   const handleIncrementItem = (id: number) => {
     setCart((prev) => {
@@ -119,31 +122,28 @@ export const ContextProvider = ({ children }: ProviderProps) => {
       const currentItem = prev.listItems[idParsed];
       const { [idParsed]: _, ...rest } = prev.listItems;
 
-
       if (currentItem.quantity === 1) {
-        return{
-          ...prev,
-          listItems:rest
-        }
-      }
-
-
         return {
           ...prev,
-          listItems: {
-            ...prev.listItems,
-            [idParsed]: {
-              ...currentItem,
-              quantity: currentItem.quantity === 1
+          listItems: rest,
+        };
+      }
+
+      return {
+        ...prev,
+        listItems: {
+          ...prev.listItems,
+          [idParsed]: {
+            ...currentItem,
+            quantity:
+              currentItem.quantity === 1
                 ? currentItem.quantity
                 : currentItem.quantity - 1,
-            },
           },
-        };
-      
+        },
+      };
     });
   };
-
 
   useEffect(() => {
     setApp((prev) => {

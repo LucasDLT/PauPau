@@ -1,5 +1,4 @@
 'use client'
-import { products } from "@/app/mock";
 import Image from "next/image";
 import { useAppContext } from "@/app/context/context";
 import {getCartView} from "@/app/helpers/index"
