@@ -1,8 +1,10 @@
 
 export interface AppStore{
     cart:Cart,
-    product:Product[]
+    product:Products
 }
+export type  Products = Record<string,Product>
+
 export interface Product{
 id:number,
 name:string, 
@@ -35,7 +37,7 @@ export interface CartItem{
 
 export const INITIAL_STATE:AppStore={
     cart:{timestamp:0,listItems:{}},
-    product:[]
+    product:{}
 }
 
 export  type CartViewItem = Product &{

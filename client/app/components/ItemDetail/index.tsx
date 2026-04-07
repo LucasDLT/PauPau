@@ -59,7 +59,7 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
             />
           </div>
           <div className="flex justify-between items-center md:col-start-1 md:row-start-3 md:justify-center">
-            <div className="flex justify-around items-center  bg-black/20 w-50 h-10 py-0.5  md:bg-transparent md:border md:border-gray-500 md:rounded-full md:h-15 md:w-70">
+            <div className="flex justify-around items-center rounded-r bg-black/20 w-50 h-10 py-0.5  md:bg-transparent md:border md:border-gray-500 md:rounded-full md:h-15 md:w-70">
               {product.image.map((url, index) => (
                 <div className="flex justify-center items-center h-full  ">
                   <Image
@@ -74,7 +74,8 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
                 </div>
               ))}
             </div>
-            <p className="flex justify-center items-center bg-black/20 h-10 w-30  md:bg-transparent"> ${product.price}</p>
+            <h3 className="flex justify-center items-center bg-black/20 h-10 w-30 rounded  md:bg-transparent">{product.stock}</h3>
+            <p className="flex justify-center items-center bg-black/20 h-10 w-30  rounded-l md:bg-transparent"> ${product.price}</p>
           </div>
 
           <div className="flex flex-col items-start justify-center gap-2 bg-linear-to-l to-slate-900/50 via-slate-100/10 from-yellow-900/10 rounded-b-sm p-1 md:col-start-2 md:row-start-2  md:bg-none ">

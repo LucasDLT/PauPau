@@ -1,5 +1,6 @@
 'use client';
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/app/context/context";
 
 interface PropsBtnsComponent {
   total: number;
@@ -7,6 +8,7 @@ interface PropsBtnsComponent {
 
 export const BtnTotalCart: React.FC<PropsBtnsComponent> = ({ total }) => {
   const router = useRouter();
+  const { handleDeleteCart } = useAppContext();
   const handlegoToArticles = () => {
     router.push(`/#articles`);
   };
@@ -23,7 +25,7 @@ export const BtnTotalCart: React.FC<PropsBtnsComponent> = ({ total }) => {
       <button
         className="border p-1 rounded hover:cursor-pointer"
         onClick={() => {
-          console.log("eliminado");
+          handleDeleteCart();
         }}
       >
         ELIMINAR LOS PRODUCTOS

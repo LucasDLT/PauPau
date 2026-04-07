@@ -4,14 +4,17 @@ import {
   useState,
   ReactNode,
   useContext,
+  useEffect,
 } from "react";
-import { Cart, INITIAL_CART } from "../types/types";
+import { AppStore, Cart, INITIAL_CART, INITIAL_STATE, Product, Products } from "../types/types";
+import { products } from "../mock";
 
 interface ContextProps {
   cart: Cart;
   setCart: React.Dispatch<React.SetStateAction<Cart>>;
   handleAddItem: (id: number) => void;
   handleDeleteItem: (id: number) => void;
+  handleDeleteCart: () => void;
 }
 interface ProviderProps {
   children: ReactNode;
@@ -28,6 +31,7 @@ export const useAppContext = (): ContextProps => {
 };
 
 export const ContextProvider = ({ children }: ProviderProps) => {
+  const [app, setApp] = useState<AppStore>(INITIAL_STATE);
   const [cart, setCart] = useState<Cart>(INITIAL_CART);
 
   //FN para agregar un item al carrito previa verificacion de existencia
@@ -48,6 +52,7 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     });
   };
 
+  //FN para eliminar un item
   const handleDeleteItem = (id: number) => {
     setCart((prev) => {
       const idParsed = id.toString();
@@ -64,9 +69,37 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     });
   };
 
+  //FN para eliminar el carrito
+  const handleDeleteCart = () => {
+    setCart(INITIAL_CART);
+  };
 
+  const normalizeProductsById =(products:Product[]):Products=>{
+    const item:Products ={}
+     for (const element of products) {
+      const idParsed=element.id.toString()
+      item[idParsed]= element
+    }
+    return item
+  }
 
+  useEffect(() => {
+    setApp((prev) => {
+      const currentProducts= normalizeProductsById(products)
+     return{
+      ...prev,
+      product:currentProducts
+     }
+    });
+  }, []);
+console.log(app.product);
 
-  const value = { cart, setCart, handleAddItem, handleDeleteItem };
+  const value = {
+    cart,
+    setCart,
+    handleAddItem,
+    handleDeleteItem,
+    handleDeleteCart,
+  };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
