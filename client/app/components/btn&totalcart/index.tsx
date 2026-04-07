@@ -1,12 +1,12 @@
 'use client';
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/context/context";
-
+import {getTotalCart} from "@/app/helpers/index"
 
 
 export const BtnTotalCart = () => {
   const router = useRouter();
-  const { handleDeleteCart } = useAppContext();
+  const { handleDeleteCart, cart, app } = useAppContext();
   const handlegoToArticles = () => {
     router.push(`/#articles`);
   };
@@ -29,7 +29,7 @@ export const BtnTotalCart = () => {
       >
         ELIMINAR LOS PRODUCTOS
       </button>
-      <p className="border p-1 rounded ">TOTAL: </p>
+      <p className="border p-1 rounded ">TOTAL:{getTotalCart(cart, app.product)} </p>
     </div>
   );
 };

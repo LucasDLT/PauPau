@@ -15,6 +15,7 @@ import {
   Products,
 } from "../types/types";
 import { products } from "../mock";
+import { getCartView, normalizeProductsById } from "../helpers";
 
 interface ContextProps {
   cart: Cart;
@@ -80,14 +81,6 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     setCart(INITIAL_CART);
   };
 
-  const normalizeProductsById = (products: Product[]): Products => {
-    const item: Products = {};
-    for (const element of products) {
-      const idParsed = element.id.toString();
-      item[idParsed] = element;
-    }
-    return item;
-  };
 
   const handleIncrementItem = (id: number) => {
     setCart((prev) => {
@@ -150,6 +143,7 @@ export const ContextProvider = ({ children }: ProviderProps) => {
       
     });
   };
+
 
   useEffect(() => {
     setApp((prev) => {
