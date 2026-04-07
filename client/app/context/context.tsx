@@ -1,6 +1,11 @@
 "use client";
-import { createContext, useState, ReactNode, useContext } from "react";
-import { AppStore, Cart, INITIAL_CART } from "../types/types";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+} from "react";
+import { Cart, INITIAL_CART } from "../types/types";
 
 interface ContextProps {
   cart: Cart;
@@ -59,7 +64,8 @@ export const ContextProvider = ({ children }: ProviderProps) => {
     });
   };
 
-  
+
+
 
   const value = { cart, setCart, handleAddItem, handleDeleteItem };
   return <Context.Provider value={value}>{children}</Context.Provider>;

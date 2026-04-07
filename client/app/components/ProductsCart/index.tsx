@@ -1,12 +1,14 @@
 'use client'
-import { cart } from "@/app/mock";
+import { products } from "@/app/mock";
 import Image from "next/image";
 import { useAppContext } from "@/app/context/context";
+import {getCartView} from "@/app/helpers/index"
 export const ProductsCart = () => {
-  const { handleDeleteItem } = useAppContext();
+  const { handleDeleteItem, cart } = useAppContext();
+  const  cartView  = getCartView(cart, products);
   return (
     <div className=" overflow-y-auto h-200 Alan-Sans md:h-80">
-      {cart.map((item, i) => (
+      {cartView.map((item, i) => (
         <div key={i} className="border-b">
           <div className="flex justify-between items-center ">
             <div className="flex flex-col m-1 rounded md:items-center">
@@ -47,7 +49,7 @@ export const ProductsCart = () => {
               <p>$ {item.price}</p>
               <p>$ {item.subtotal}</p>
             </div>
-            <button onClick={() => handleDeleteItem}>
+            <button onClick={() => handleDeleteItem(item.id)}>
               <Image
                 src={"/trash.png"}
                 alt={item.name}
