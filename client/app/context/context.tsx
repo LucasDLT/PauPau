@@ -12,6 +12,8 @@ import { products } from "../mock";
 interface ContextProps {
   cart: Cart;
   setCart: React.Dispatch<React.SetStateAction<Cart>>;
+  app : AppStore;
+  setApp: React.Dispatch<React.SetStateAction<AppStore>>;
   handleAddItem: (id: number) => void;
   handleDeleteItem: (id: number) => void;
   handleDeleteCart: () => void;
@@ -92,14 +94,15 @@ export const ContextProvider = ({ children }: ProviderProps) => {
      }
     });
   }, []);
-console.log(app.product);
 
   const value = {
     cart,
     setCart,
     handleAddItem,
+    app,
+    setApp,
     handleDeleteItem,
-    handleDeleteCart,
+    handleDeleteCart
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useAppContext } from "@/app/context/context";
 import {getCartView} from "@/app/helpers/index"
 export const ProductsCart = () => {
-  const { handleDeleteItem, cart } = useAppContext();
-  const  cartView  = getCartView(cart, products);
+  const { handleDeleteItem, cart, app } = useAppContext();
+  const  cartView  = getCartView(cart, app.product);
   return (
     <div className=" overflow-y-auto h-200 Alan-Sans md:h-80">
       {cartView.map((item, i) => (

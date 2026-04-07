@@ -4,12 +4,15 @@ import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/context/context";
+import { Product } from "@/app/types/types";
 export const Articles = () => {
   const refItems = useRef<(HTMLLIElement | null)[]>([]);
   const refContainer = useRef<HTMLUListElement | null>(null);
-  const { handleAddItem } = useAppContext();
+  const { handleAddItem, app } = useAppContext();
   const router = useRouter();
-
+const productsFiltered: Product[] = Object.values(app.product).filter(
+    (product) => product.type === "product",
+  );
   useEffect(() => {
     const items = refItems.current;
     if (!refContainer.current) return;
@@ -42,12 +45,11 @@ export const Articles = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [productsFiltered]);
 
-  const productsFiltered = products.filter(
-    (product) => product.type === "product",
-  );
+  
 
+  
   const handleDetailItem = (slugId: number) => {
     console.log("log en handle");
     router.push(`/detailItem/${slugId}`);
@@ -61,7 +63,7 @@ export const Articles = () => {
         ref={refContainer}
         className="flex flex-col gap-8 overflow-y-auto items-center min-h-0 md:grid md:grid-cols-2 md:grid-rows-[1fr_1fr_1fr] md:alingn-items-center justify-items-center perspective-[1000px]"
       >
-        {[...productsFiltered, ...productsFiltered].map((product, i) => (
+        {[...productsFiltered, ...productsFiltered].map((product, i) =>  (
           <li
             key={i}
             ref={(items) => {
