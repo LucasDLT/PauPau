@@ -82,5 +82,13 @@ export interface Order{
 }
 
 export interface FormOrderError{
-    message:string
-}
+  name?: string;
+  surname?: string;
+  dni?: string;
+  country?: string;
+  city?: string;
+  address?: string;
+  phone?: string;
+  email?: string;
+  aditionalInfo?: string;
+  send?: string;}
