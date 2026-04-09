@@ -78,6 +78,7 @@ send:"free",
 
 export interface Order{
     cart:Cart,
+    total:number,
     infoUser:FormOrder
 }
 

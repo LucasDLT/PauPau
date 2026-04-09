@@ -7,12 +7,13 @@ import {
 } from "@/app/types/types";
 import { useState } from "react";
 import { useAppContext } from "@/app/context/context";
+import { getTotalCart } from "@/app/helpers";
 
 export const OrderForm = () => {
   const [error, setError] = useState<FormOrderError>({});
   const [form, setForm] = useState<FormOrder>(INITIAL_FORM);
 
-  const { cart } = useAppContext();
+  const { cart, app } = useAppContext();
 
   const handleChangeForm = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -65,11 +66,13 @@ export const OrderForm = () => {
       const hasError = Object.values(validateErrors).some(Boolean);
       if (hasError) return;
 
+      const cartTotal = getTotalCart(cart, app.product);
       const orderPayload: Order = {
         cart: {
           timestamp: Date.now(),
           listItems: cart.listItems,
         },
+        total: cartTotal,
         infoUser: {
           name: form.name,
           surname: form.surname,
