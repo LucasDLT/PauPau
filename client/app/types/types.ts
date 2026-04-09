@@ -46,3 +46,41 @@ export  type CartViewItem = Product &{
 }
 
 //NOTA SOBRE CANTIDAD Y STOCK: hay que hacer un calculo para que cuanto mas proximo se este del final del stock el numero de la cantidad agregada al carrito se vuelva rojo<
+
+
+//Tipados para el formulario de orden 
+export type Send="free"|"cost"
+export interface FormOrder {
+name:string,
+surname:string,
+dni:string,
+country:string, 
+city:string,
+address:string,
+phone:string,
+email:string,
+aditionalInfo:string,
+send:Send,
+}
+
+export const INITIAL_FORM:FormOrder={
+name:"",
+surname:"",
+dni:"",
+country:"", 
+city:"",
+address:"",
+phone:"",
+email:"",
+aditionalInfo:"",
+send:"free",    
+}
+
+export interface Order{
+    cart:Cart,
+    infoUser:FormOrder
+}
+
+export interface FormOrderError{
+    message:string
+}
