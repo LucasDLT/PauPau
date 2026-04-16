@@ -15,6 +15,8 @@ export const OrderForm = () => {
 
   const { cart, app } = useAppContext();
 
+  const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
   const handleChangeForm = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -28,8 +30,8 @@ export const OrderForm = () => {
     setForm(updateForm);
 
     const fieldError = handleErrors(updateForm);
-    console.log( fieldError);
-    
+    console.log(fieldError);
+
     setError(fieldError);
   };
   const handleErrors = (data: FormOrder): FormOrderError => {
@@ -58,7 +60,7 @@ export const OrderForm = () => {
     return errors;
   };
 
-  const handleSubmitOrder = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const validateErrors = handleErrors(form);
@@ -87,10 +89,27 @@ export const OrderForm = () => {
         },
       };
       console.log(orderPayload);
-      
+      if (!(window as any).grecaptcha) {
+        throw new Error("reCAPTCHA no cargado");
+      }
+      const token = await (window as any).grecaptcha.execute(
+        RECAPTCHA_SITE_KEY,
+        { action: "submit" },
+      );
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...orderPayload, token }),
+      });
+      if (!response.ok) {
+        console.log(response);
+
+        throw new Error("Error en el envío de email");
+      }
+      const data = await response.json();
+      console.log("respuesta del envio", data);
     } catch (error) {
       console.log(error);
-      
     }
   };
 
@@ -227,7 +246,10 @@ export const OrderForm = () => {
         </div>
       </div>
       <div className="Alan-Sans justify-self-center self-center  md:col-start-2 md:row-start-2  md:justify-self-center ">
-        <button type="submit" className="bg-olive-500/30 p-1 border rounded  md:h-8 md:hover:cursor-pointer ">
+        <button
+          type="submit"
+          className="bg-olive-500/30 p-1 border rounded  md:h-8 md:hover:cursor-pointer "
+        >
           ENVIAR PEDIDO
         </button>
       </div>

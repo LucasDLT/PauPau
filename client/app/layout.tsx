@@ -7,6 +7,7 @@ import {
   Alan_Sans
 } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import { UIProvider } from "./UIProvider/contextUI";
 import { ContextProvider } from "./context/context";
 import { LateralBar } from "./components/lateralbar";
@@ -59,6 +60,10 @@ export default function RootLayout({
             <NavbarMobile/>
             <Sidebar />
             <div className="pl-12 pr-12">{children}</div> 
+            <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+            strategy="afterInteractive"
+            />
             <LateralBar />
           </UIProvider>
         </ContextProvider>
