@@ -1,19 +1,14 @@
 import { google } from "googleapis";
 import { NextResponse } from "next/server";
+import { buildMessage } from "@/app/utils/buildEmail";
+import { verifyRecaptcha } from "@/app/utils/reCAPTCHA";
 
 const GMAIL_REFRESH_TOKEN = process.env.GMAIL_REFRESH_TOKEN;
 const GMAIL_CLIENT_ID = process.env.GMAIL_CLIENT_ID;
 const GMAIL_CLIENT_SECRET = process.env.GMAIL_CLIENT_SECRET;
 const GMAIL_USER = process.env.GMAIL_USER;
 const GMAIL_REDIRECT_URI = process.env.GMAIL_REDIRECT_URI;
-const RECAPTCHA_KEY_SECRET = process.env.RECAPTCHA_KEY_SECRET;
 
-console.log({
-  GMAIL_CLIENT_ID,
-  GMAIL_CLIENT_SECRET,
-  GMAIL_REFRESH_TOKEN,
-  GMAIL_USER,
-});
 
 const oAuth2Client = new google.auth.OAuth2(
   GMAIL_CLIENT_ID,
@@ -51,52 +46,18 @@ export async function POST(req: Request) {
     );
   }
 
-  const verifyURL = "https://www.google.com/recaptcha/api/siteverify";
+const recaptcha = await verifyRecaptcha(token);
 
-  const recaptchaRes = await fetch(verifyURL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: `secret=${RECAPTCHA_KEY_SECRET}&response=${token}`,
-  });
-
-  const recaptchaData = await recaptchaRes.json();
-
-  if (!recaptchaData.success || recaptchaData.score < 0.5) {
-    return NextResponse.json(
-      {
-        error:
-          "Fallo la verificacion de seguridad, intentalo nuevamente para verificar que eres humano",
-      },
-      { status: 403 },
-    );
-  }
-  //lo de arriba puede ir en una funcion aux y pasarle recaptcha como parametro
+if (!recaptcha.success) {
+  return NextResponse.json(
+    { error: "Captcha inválido" },
+    { status: 403 }
+  );
+}
 
   const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
 
-  const buildMessage = (
-    to: string,
-    subject: string,
-    html: string,
-    replyTo?: string,
-  ) => {
-    const msg = `From: ${GMAIL_USER}
-To: ${to}
-Subject: ${subject}
-${replyTo ? `Reply-To: ${replyTo}` : ""}
-MIME-Version: 1.0
-Content-Type: text/html; charset=UTF-8
-
-${html}`;
-
-    return Buffer.from(msg)
-      .toString("base64")
-      .replace(/\+/g, "-")
-      .replace(/\//g, "_")
-      .replace(/=+$/, "");
-  };
+ 
 
   const mailToAdmin = buildMessage(
     GMAIL_USER!,
@@ -104,7 +65,6 @@ ${html}`;
     `<h1>Hola</h1>`,
     email,
   );
-  console.log(email);
 
   const mailToUser = buildMessage(
     email,

@@ -1,3 +1,4 @@
+import "../app/globals.css";
 import type { Metadata } from "next";
 import {
   Geist,
@@ -6,13 +7,13 @@ import {
   Thasadith,
   Alan_Sans
 } from "next/font/google";
-import "./globals.css";
 import Script from "next/script";
 import { UIProvider } from "./UIProvider/contextUI";
 import { ContextProvider } from "./context/context";
 import { LateralBar } from "./components/lateralbar";
 import { Sidebar } from "./components/sidebar";
 import { NavbarMobile } from "./components/navbar";
+import Footer from "./components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,9 +58,11 @@ export default function RootLayout({
       >
         <ContextProvider>
           <UIProvider>
+            
             <NavbarMobile/>
             <Sidebar />
-            <div className="pl-12 pr-12">{children}</div> 
+            <div className="pl-12 pr-12 flex-1">{children}</div> 
+            <Footer />
             <Script
             src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
             strategy="afterInteractive"

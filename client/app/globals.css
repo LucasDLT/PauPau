@@ -128,3 +128,7 @@ animacion de entrada de items
   border:none;
   background-color: transparent;
 }
+
+.grecaptcha-badge{
+  visibility: hidden;
+}

@@ -205,7 +205,7 @@ export const cart: CartViewItem[] = [
     size: "Size 1",
     weight: "Weight 1",
     finished: "Finished 1",
-    stock: 10,
+    stock: 10, 
     type: "project",
     subtotal: 0,
     quantity: 10,

@@ -53,7 +53,7 @@ export const LateralBar = () => {
         height={30}
         src={"/WhatsApp Btn black.png"}
         alt="icono de whatsapp con redireccion"
-        className="hover:cursor-pointer md:hidden"
+        className="hover:cursor-pointer mb-18 md:hidden"
       />
       <Image
         width={30}

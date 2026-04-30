@@ -18,7 +18,7 @@ export const OrderForm = () => {
   const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   const handleChangeForm = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
 
@@ -30,7 +30,6 @@ export const OrderForm = () => {
     setForm(updateForm);
 
     const fieldError = handleErrors(updateForm);
-    console.log(fieldError);
 
     setError(fieldError);
   };
@@ -69,6 +68,9 @@ export const OrderForm = () => {
       if (hasError) return;
 
       const cartTotal = getTotalCart(cart, app.product);
+      if (cartTotal === 0) {
+        throw new Error("El carrito esta vacio, agrega productos y volve a intentarlo")
+      }
       const orderPayload: Order = {
         cart: {
           timestamp: Date.now(),
@@ -88,26 +90,24 @@ export const OrderForm = () => {
           send: form.send,
         },
       };
-      console.log(orderPayload);
-      if (!(window as any).grecaptcha) {
+      if (!window.grecaptcha) {
         throw new Error("reCAPTCHA no cargado");
       }
-      const token = await (window as any).grecaptcha.execute(
-        RECAPTCHA_SITE_KEY,
-        { action: "submit" },
-      );
-      const response = await fetch("/api/send-email", {
+      if (!window.grecaptcha?.execute) {
+        throw new Error("reCAPTCHA no listo");
+      }
+      const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY!, {
+        action: "submit",
+      });
+      const response = await fetch("/api/send-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...orderPayload, token }),
       });
       if (!response.ok) {
-        console.log(response);
-
-        throw new Error("Error en el envío de email");
+        throw new Error("Error en el envío de la orden");
       }
       const data = await response.json();
-      console.log("respuesta del envio", data);
     } catch (error) {
       console.log(error);
     }
