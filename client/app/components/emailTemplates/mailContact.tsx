@@ -3,7 +3,7 @@ type EmailLayoutProps = {
   logoUrl?: string;
 };
 
-export const EmailLayout = ({ content, logoUrl }: EmailLayoutProps) => {
+export const EmailLayout = ({ content, logoUrl }: EmailLayoutProps) => { 
   return `
   <html>
     <body style="margin:0; padding:0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
