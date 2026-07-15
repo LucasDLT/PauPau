@@ -93,3 +93,12 @@ export interface FormOrderError{
   email?: string;
   aditionalInfo?: string;
   send?: string;}
+
+
+  export interface OrderItem {
+  name: string;
+  image: string;
+  quantity: number;
+  price: number;
+  subtotal: number;
+}

@@ -35,11 +35,10 @@ export async function POST(req: Request) {
     const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
 
     const html = EmailLayout({
-      logoUrl: "https://i.imgur.com/a/QGLq5BI",
       content: `
     <tr>
       <td style="padding:20px;">
-        <h2>Hola ${form.name}, te acerco un resumen de tu mensaje.</h2>
+        <h2>Hola ${form.name}, este es un resumen de tu mensaje.</h2>
         <p>${form.message}</p>
         </td>
     </tr>
@@ -54,11 +53,10 @@ export async function POST(req: Request) {
     const mailToUser = buildMessage(form.email, "Consulta Online", html);
 
       const htmladmin = EmailLayout({
-      logoUrl: "https://i.imgur.com/a/QGLq5BI",
       content: `
     <tr>
       <td style="padding:20px;">
-        <h2> Te escribio ${form.name}, te acerco un resumen de su mensaje y sus datos de contacto.</h2>
+        <h2> Te escribio ${form.name}, este es un resumen de su mensaje y sus datos de contacto.</h2>
         <p>Nombre: ${form.name}</p>
         <p>Apellido: ${form.surname}</p>
         <p>Tel.: ${form.phone}</p>

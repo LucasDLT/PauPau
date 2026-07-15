@@ -8,6 +8,7 @@ export const verifyRecaptcha = async (
 ): Promise<RecaptchaResult> => {
   const verifyURL = "https://www.google.com/recaptcha/api/siteverify";
   const RECAPTCHA_KEY_SECRET = process.env.RECAPTCHA_KEY_SECRET;
+  console.log("token en la funcion",token);
 
   const recaptchaRes = await fetch(verifyURL, {
     method: "POST",
@@ -18,6 +19,7 @@ export const verifyRecaptcha = async (
   });
 
   const recaptchaData = await recaptchaRes.json();
+  console.log("recaptchaData", recaptchaData);
 
   if (!recaptchaData.success || recaptchaData.score < 0.5) {
     throw new Error(

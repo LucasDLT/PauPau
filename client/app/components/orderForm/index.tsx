@@ -99,6 +99,7 @@ export const OrderForm = () => {
       const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY!, {
         action: "submit",
       });
+      console.log("token en el envio", token);
       const response = await fetch("/api/send-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -1,9 +1,8 @@
 type EmailLayoutProps = {
   content: string;
-  logoUrl?: string;
 };
 
-export const EmailLayout = ({ content, logoUrl }: EmailLayoutProps) => { 
+export const EmailLayout = ({ content }: EmailLayoutProps) => { 
   return `
   <html>
     <body style="margin:0; padding:0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;">
@@ -33,11 +32,11 @@ export const EmailLayout = ({ content, logoUrl }: EmailLayoutProps) => {
               <!-- Header (Logo) -->
               <tr>
                 <td align="center" style="padding:20px;">
-                  ${
-                    logoUrl
-                      ? `<img src="${logoUrl}" alt="Logo" width="120" style="display:block;" />`
-                      : `<h2 style="margin:0;">Tu Marca</h2>`
-                  }
+             
+                    
+                      <img src="https://imgur.com/YSngi5M.jpg" alt="Logo" width="120" style="display:block;" />
+                    
+                  
                 </td>
               </tr>
 

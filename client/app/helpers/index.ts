@@ -1,4 +1,4 @@
-import { Cart, CartViewItem, Product, Products } from "../types/types";
+import { Cart, CartItem, CartViewItem, OrderItem, Product, Products } from "../types/types";
 export const getCartView = (cart: Cart, product: Products): CartViewItem[] => {
     return Object.values(cart.listItems)
       .map((item) => {
@@ -47,3 +47,28 @@ export const getCartView = (cart: Cart, product: Products): CartViewItem[] => {
       }) 
       return total   
     }
+
+
+
+export const getOrderItems = (
+  listItems: Record<string, CartItem>,
+  products: Product[]
+): OrderItem[] => {
+  return Object.values(listItems)
+    .map((item) => {
+      const product = products.find(
+        (p) => String(p.id) === item.productId
+      );
+
+      if (!product) return;
+
+      return {
+        name: product.name,
+        image: product.image[0],
+        quantity: item.quantity,
+        price: product.price,
+        subtotal: product.price * item.quantity,
+      };
+    })
+    .filter((item): item is OrderItem => item !== undefined);
+};
