@@ -5,22 +5,130 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html {
+  scroll-behavior: smooth;
+}
+
+/*letra del nav mobile*/
+.Julius-Sans-One {
+  font-family: var(--Julius-Sans-One);
+}
+/*letra de textos generales*/
+.Thasadith {
+  font-family: var(--Thasadith);
+}
+
+/*letra de texto section-project*/
+.Alan-Sans {
+  font-family: var(--Alan-Sans);
+}
+
+/*animacion carousel de proyectos*/
+
+.animate-scrollBanner {
+  animation: scrollBanner 40s linear infinite;
+}
+.animate-scrollBanner:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollBanner {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-200px * var(--items)));
+  }
+}
+/*
+CALCULO NECESARIO PARA QUE LA ANIMACION SEA CONTINUA SIN SALTOS PERO UTILIZA VALORES FIJOS:
+ancho de la tarjeta * cantidad de tarjetas - margenes y padings * cantidad de elementos contando los duplicados.
+CALCULO DINAMICO ES calc(-200px * var(--items))) items es el length del array y el array hay que duplicarlo hasta que quede fuera del viewport el salto
+*/
+
+/*
+animacion de entrada de items
+*/
+.item {
+  transform: scale3d( 0.1, 1, 0 );
+  transition: all 0.6s ease-out;
+}
+
+.item.visible {
+  transform: scale3d( 1, 1, 2 );
+    transition: all 0.6s ease-out;
+}
+
+/*reduccion y estilos generales del scrollbar*/
+::-webkit-scrollbar-track {
+  background: #9a85a771;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #3e3e3e;
+  border-radius: 10px;
+}
+
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* checkbox custom */
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #555;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s ease;
+}
+
+.custom-checkbox:checked {
+  border-color: black;
+}
+
+/* el puntito */
+.custom-checkbox::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 6px;
+  background: black;
+  border-radius: 50%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.2s ease;
+}
+
+.custom-checkbox:checked::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/*estilos para los inputs del formulario de envio del pedido*/
+
+.custom-input:focus{
+  outline: none;
+  border:none;
+  background-color: transparent;
+}
+
+.grecaptcha-badge{
+  visibility: hidden;
 }

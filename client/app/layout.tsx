@@ -1,6 +1,19 @@
+import "../app/globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import {
+  Geist,
+  Geist_Mono,
+  Julius_Sans_One,
+  Thasadith,
+  Alan_Sans
+} from "next/font/google";
+import Script from "next/script";
+import { UIProvider } from "./UIProvider/contextUI";
+import { ContextProvider } from "./context/context";
+import { LateralBar } from "./components/lateralbar";
+import { Sidebar } from "./components/sidebar";
+import { NavbarMobile } from "./components/navbar";
+import Footer from "./components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +23,21 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const AlanSans = Alan_Sans({
+  weight: "500",
+  variable: "--Alan-Sans",
+})
+
+const JuliusSansOne = Julius_Sans_One({
+  weight: "400",
+  variable: "--Julius-Sans-One",
+});
+
+const thasadith = Thasadith({
+  weight: "400",
+  variable: "--Thasadith",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +53,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${JuliusSansOne.variable} ${thasadith.variable} ${AlanSans.variable} antialiased
+        relative  bg-[url('/backgroundApp-hight.jpg')] bg-no-repeat bg-cover bg-fixed  `}
       >
-        {children}
+        <ContextProvider>
+          <UIProvider>
+            
+            <NavbarMobile/>
+            <Sidebar />
+            <div className="pl-12 pr-12 flex-1">{children}</div> 
+            <Footer />
+            <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+            strategy="afterInteractive"
+            />
+            <LateralBar />
+          </UIProvider>
+        </ContextProvider>
       </body>
     </html>
   );
