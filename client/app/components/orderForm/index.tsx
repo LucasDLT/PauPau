@@ -29,9 +29,9 @@ export const OrderForm = () => {
 
     setForm(updateForm);
 
-    const fieldError = handleErrors(updateForm);
+    //const fieldError = handleErrors(updateForm);
 
-    setError(fieldError);
+   // setError(fieldError);
   };
   const handleErrors = (data: FormOrder): FormOrderError => {
     const errors: FormOrderError = {};
@@ -122,7 +122,7 @@ export const OrderForm = () => {
     >
       <div className="flex flex-col gap-5 md:col-start-1 md:grid md:gap-8 ">
         <div className="border-b flex gap-2">
-          <label htmlFor="name">Nombre</label>
+          <label htmlFor="name">Nombre *</label>
           <input
             type="text"
             id="name"
@@ -130,10 +130,10 @@ export const OrderForm = () => {
             value={form.name}
             className="custom-input font-light"
             onChange={handleChangeForm}
-          />
+            />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="surname">Apellido</label>
+          <label htmlFor="surname">Apellido *</label>
           <input
             type="text"
             id="surname"
@@ -144,7 +144,7 @@ export const OrderForm = () => {
           />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="dni">DNI</label>
+          <label htmlFor="dni">DNI *</label>
           <input
             type="text"
             id="dni"
@@ -155,7 +155,7 @@ export const OrderForm = () => {
           />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="country">Pais/Region</label>
+          <label htmlFor="country">Pais/Region *</label>
           <input
             type="text"
             id="country"
@@ -166,7 +166,7 @@ export const OrderForm = () => {
           />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="city">Localidad/Ciudad</label>
+          <label htmlFor="city">Localidad/Ciudad *</label>
           <input
             type="text"
             id="city"
@@ -177,7 +177,7 @@ export const OrderForm = () => {
           />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="address">Direccion</label>
+          <label htmlFor="address">Direccion *</label>
           <input
             type="text"
             id="address"
@@ -188,7 +188,7 @@ export const OrderForm = () => {
           />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="phone">Telefono</label>
+          <label htmlFor="phone">Telefono *</label>
           <input
             type="text"
             id="phone"
@@ -199,7 +199,7 @@ export const OrderForm = () => {
           />
         </div>
         <div className="border-b flex gap-2">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email *</label>
           <input
             type="text"
             id="email"

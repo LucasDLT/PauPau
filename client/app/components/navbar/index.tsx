@@ -68,11 +68,11 @@ export const NavbarMobile = () => {
             Proyectos
           </a>
         </li>
-        <li className="hover:cursor-pointer">
+{       /* <li className="hover:cursor-pointer">
           <a href="#about" onClick={(e) => handleNavigate(e, "about")}>
             Sobre mi
           </a>
-        </li>
+        </li>*/}
         <li className="hover:cursor-pointer">
           <a href="#contact" onClick={(e) => handleNavigate(e, "contact")}>
             Contactame

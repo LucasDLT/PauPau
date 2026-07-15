@@ -12,7 +12,7 @@ export default function Home() {
       <SectionText />
       <Articles />
       <ProjectSection />
-      <AboutMe />
+     { /*<AboutMe />*/}
       <BuyMethodSection />
       <ContactSection />
     </>

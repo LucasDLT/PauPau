@@ -11,9 +11,14 @@ export default function CartPage() {
 
       <ProductsCart />
       <BtnTotalCart />
-      <p className="self-center text-center py-6 text-3xl  border-yellow-600 border-dashed border-y-2 font-black ">
+
+      <div>
+      <p className="self-center text-center py-3 text-3xl  border-yellow-600 border-dashed border-y-2 font-black ">
         completa el formulario y envialo para coordinar pago y envio.
       </p>
+      <p className="text-red-600 font-black text-[12px] text-center">los campos con ( * ) son obligatorios</p> 
+      </div>
+
       <OrderForm />
     </section>
   );
