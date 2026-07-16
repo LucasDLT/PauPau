@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export interface FormContact {
   name: string;
@@ -26,6 +27,7 @@ export interface FormContactError {
 export const ContactSection = () => {
   const [form, setForm] = useState<FormContact>(INITIAL_FORM);
   const [error, setError] = useState<FormContactError>({});
+  const [loading, setLoading] = useState(false);
   const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   const handleChangeForm = (
@@ -54,41 +56,61 @@ export const ContactSection = () => {
 
     return errors;
   };
+  const validateForm = () => {
+    const errors = handleErrors(form);
+
+    setError(errors);
+
+    return !Object.values(errors).some(Boolean);
+  };
+  const getRecaptchaToken = async () => {
+    if (!window.grecaptcha) {
+      throw new Error("reCAPTCHA no cargado");
+    }
+
+    if (!window.grecaptcha.execute) {
+      throw new Error("reCAPTCHA no listo");
+    }
+
+    return window.grecaptcha.execute(RECAPTCHA_SITE_KEY!, {
+      action: "submit",
+    });
+  };
+  const sendMessage = async (token: string) => {
+    const response = await fetch("/api/send-message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ form, token }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al enviar el mensaje");
+    }
+
+    return response.json();
+  };
 
   const handleSubmitMessage = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
+
     try {
-      //validaciones de error
-      const validateErrors = handleErrors(form);
-      setError(validateErrors);
-      const hasError = Object.values(validateErrors).some(Boolean);
-      if (hasError) return;
+      setLoading(true);
 
-      //validacion de recaptcha token
+      const token = await getRecaptchaToken();
 
-      if (!window.grecaptcha) {
-        throw new Error("reCAPTCHA no cargado");
-      }
-      if (!window.grecaptcha?.execute) {
-        throw new Error("reCAPTCHA no listo");
-      }
-
-      const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY!, {
-        action: "submit",
-      });
-      const response = await fetch("/api/send-message", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ form, token }),
+      const data = await toast.promise(sendMessage(token), {
+        pending: "Enviando mensaje...",
+        success: "Mensaje enviado correctamente",
+        error: "Error al enviar el mensaje",
       });
 
-      if (!response.ok) {
-        throw new Error("Error al enviar el mensaje");
-      }
-
-      const data = await response.json();
-    } catch (error) {
-      console.log(error);
+      setForm(INITIAL_FORM);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -192,13 +214,18 @@ md:to-orange-900/5 md:col-start-2 md:w-full md:backdrop-blur-[3px] md:py-6"
         </div>
         <div className="flex flex-col w-full px Alan-Sans md:px-6 md:py-3">
           <button
+            disabled={loading}
             type="submit"
             className="bg-amber-100 p-1 hover:cursor-pointer rounded w-full text-[20px]"
           >
-            ENVIAR
+            {loading ? "ENVIANDO..." : "ENVIAR"}
           </button>
         </div>
-      {error && <p className="text-red-700 text-[14px] font-extrabold">los campos marcados con ( * ) son obligatorios</p>}
+        {error && (
+          <p className="text-red-700 text-[14px] font-extrabold">
+            los campos marcados con ( * ) son obligatorios
+          </p>
+        )}
       </form>
     </section>
   );

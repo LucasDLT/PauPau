@@ -14,6 +14,8 @@ import { LateralBar } from "./components/lateralbar";
 import { Sidebar } from "./components/sidebar";
 import { NavbarMobile } from "./components/navbar";
 import Footer from "./components/footer";
+import { ToastContainer, Bounce } from "react-toastify";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,6 +72,22 @@ export default function RootLayout({
             <LateralBar />
           </UIProvider>
         </ContextProvider>
+              <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+        className="Thasadith font-bold text-lg"
+        progressClassName="bg-green-600"
+        toastClassName="bg-amber-100 text-stone-900 border border-amber-300 rounded-lg"
+      />
       </body>
     </html>
   );
