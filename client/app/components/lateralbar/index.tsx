@@ -5,15 +5,16 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 
 export const LateralBar = () => {
-    const {isOpen, setIsOpen} = useUI()
+    const {isOpen, setIsOpen, isInCart, setIsInCart} = useUI()
     const router = useRouter()
     const pathname = usePathname()
-    const isInCart = pathname === "/cart"
+    const inCart = pathname === "/cart"
   const handleOpenMenu = () => {
     setIsOpen(!isOpen);
   };
   const navigateToCart = () => {
     setIsOpen(false);
+    setIsInCart(true);
     router.replace("/cart")
   }
   return (
@@ -45,9 +46,10 @@ export const LateralBar = () => {
         height={30}
         src={"/cart.png"}
         alt="icono de carrito con redireccion"
-        className={`hover:cursor-pointer transition-all ease-in-out duration-300 ${isInCart ? "opacity-0" : "opacity-100"}`}
+        className={`hover:cursor-pointer transition-all ease-in-out duration-300 ${inCart ? "opacity-0" : "opacity-100"}`}
         onClick={navigateToCart}
       />
+      <a href="https://wa.me/541139549908?text=Hola!,%20estoy%20mirando%20tu%20pagina%20web,%20me%20gustaria%20consultarte%20sobre:" target="_blank" rel="noopener noreferrer">
       <Image
         width={30}
         height={30}
@@ -55,6 +57,9 @@ export const LateralBar = () => {
         alt="icono de whatsapp con redireccion"
         className="hover:cursor-pointer mb-18 md:hidden"
       />
+      </a>
+
+      <a href="https://wa.me/541139549908?text=Hola!,%20estoy%20mirando%20tu%20pagina%20web,%20me%20gustaria%20consultarte%20sobre:" target="_blank" rel="noopener noreferrer">
       <Image
         width={30}
         height={30}
@@ -62,6 +67,7 @@ export const LateralBar = () => {
         alt="icono de whatsapp con redireccion"
         className="hover:cursor-pointer hidden md:block"
       />
+      </a>
     </div>
   );
 };

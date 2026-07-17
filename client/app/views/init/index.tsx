@@ -1,10 +1,38 @@
 "use client";
 import { Video } from "@/app/components/video";
 import { useUI } from "@/app/UIProvider/contextUI";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 export const Init = () => {
-  const { isOpen, heroRef } = useUI();
+  const { isOpen, setPassHero } = useUI();
+  const heroRef = useRef<HTMLElement>(null); //referencia al herosection
+  //efecto e intersecion observer para la visibilidad del title del margin izquierdo cuando no tengamos la imagen del hero visible para mayor consistencia visual
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          setPassHero(false);
+        } else {
+          setPassHero(true);
+        }
+      },
+      {
+        /*aca irian las options*/ root: null,
+        rootMargin: "0px",
+        threshold: 1,
+      },
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+    return () => {
+      observer.disconnect();
+      setPassHero(false);
+    };  
+  }, []);
   return (
     <main
       ref={heroRef}
@@ -18,7 +46,7 @@ export const Init = () => {
           src={"/imagen home.png"}
           className=""
         />*/}
-        <Video/>
+        <Video />
       </div>
 
       <div

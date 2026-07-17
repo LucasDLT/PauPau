@@ -8,10 +8,13 @@ import {
 import { useState } from "react";
 import { useAppContext } from "@/app/context/context";
 import { getTotalCart } from "@/app/helpers";
+import { toast } from "react-toastify";
+
 
 export const OrderForm = () => {
   const [error, setError] = useState<FormOrderError>({});
   const [form, setForm] = useState<FormOrder>(INITIAL_FORM);
+  const [loading, setLoading] = useState(false);
 
   const { cart, app } = useAppContext();
 
@@ -59,15 +62,25 @@ export const OrderForm = () => {
     return errors;
   };
 
-  const handleSubmitOrder = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const validateErrors = handleErrors(form);
-      setError(validateErrors);
-      const hasError = Object.values(validateErrors).some(Boolean);
-      if (hasError) return;
+  const validateForm = () => {
+    const errors = handleErrors(form);
+    setError(errors);
+    return !Object.values(errors).some(Boolean);
+  };
+  const getRecaptchaToken = async ()=>{
+          if (!window.grecaptcha) {
+        throw new Error("reCAPTCHA no cargado");
+      }
+      if (!window.grecaptcha.execute) {
+        throw new Error("reCAPTCHA no listo");
+      }
+     return await window.grecaptcha.execute(RECAPTCHA_SITE_KEY!, {
+        action: "submit",
+      });
+  }
 
-      const cartTotal = getTotalCart(cart, app.product);
+  const sendOrder = async (token: string) => {
+          const cartTotal = getTotalCart(cart, app.product);
       if (cartTotal === 0) {
         throw new Error("El carrito esta vacio, agrega productos y volve a intentarlo")
       }
@@ -90,16 +103,7 @@ export const OrderForm = () => {
           send: form.send,
         },
       };
-      if (!window.grecaptcha) {
-        throw new Error("reCAPTCHA no cargado");
-      }
-      if (!window.grecaptcha?.execute) {
-        throw new Error("reCAPTCHA no listo");
-      }
-      const token = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY!, {
-        action: "submit",
-      });
-      console.log("token en el envio", token);
+
       const response = await fetch("/api/send-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -108,9 +112,26 @@ export const OrderForm = () => {
       if (!response.ok) {
         throw new Error("Error en el envío de la orden");
       }
-      const data = await response.json();
+      return response.json();
+  }
+  const handleSubmitOrder = async (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    try {
+      setLoading(true)
+      const token = await getRecaptchaToken();
+      const data = await toast.promise(sendOrder(token), {
+        pending: "Enviando orden...",
+        success: "Orden enviada correctamente",
+        error: "Error al enviar la orden",
+      });
+      console.log(data);
+      setForm(INITIAL_FORM);
+
     } catch (error) {
       console.log(error);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -250,8 +271,9 @@ export const OrderForm = () => {
         <button
           type="submit"
           className="bg-olive-500/30 p-1 border rounded  md:h-8 md:hover:cursor-pointer "
-        >
-          ENVIAR PEDIDO
+          disabled={loading}
+       >
+         {loading ? "ENVIANDO..." : "ENVIAR PEDIDO"}
         </button>
       </div>
     </form>

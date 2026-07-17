@@ -1,13 +1,16 @@
 'use client';
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/context/context";
+import { useUI } from "@/app/UIProvider/contextUI";
 import {getTotalCart} from "@/app/helpers/index"
 
 
 export const BtnTotalCart = () => {
   const router = useRouter();
   const { handleDeleteCart, cart, app } = useAppContext();
+  const { setIsInCart } = useUI();
   const handlegoToArticles = () => {
+    setIsInCart(false);
     router.push(`/#articles`);
   };
   
