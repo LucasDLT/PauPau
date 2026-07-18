@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useUI } from "@/app/UIProvider/contextUI";
 import { useRouter, usePathname } from "next/navigation";
 export const Sidebar = () => {
-  const { passHero, isInCart,setIsInCart } = useUI();
+  const { passHero, isInCart,setIsInCart, isInDetailItem } = useUI();
   const router = useRouter();
   const pathname = usePathname();
   const id = "home";
@@ -30,7 +30,7 @@ export const Sidebar = () => {
           fill
           src={"/Title Margen Desktop marginYellow.png"}
           alt="Title Margen Desktop margin"
-          className={`$transition-opacity duration-400 ease-in-out ${passHero || isInCart ? "opacity-100 hover:cursor-pointer" : "opacity-0"}`}
+          className={`$transition-opacity duration-400 ease-in-out ${passHero || isInCart || isInDetailItem ? "opacity-100 hover:cursor-pointer" : "opacity-0"}`}
           onClick={() => hadleGoHome()}
         />
       </div>

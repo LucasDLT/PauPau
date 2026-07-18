@@ -5,6 +5,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/context/context";
+import { useUI } from "@/app/UIProvider/contextUI";
 import { Counter } from "../contador";
 
 interface ItemDetailProps {
@@ -16,10 +17,12 @@ export const ItemDetail: React.FC<ItemDetailProps> = ({ id }) => {
   const [count, setCount] = useState<number>(1);
   const router = useRouter();
   const { handleAddItem } = useAppContext();
+  const { isInDetailItem, setIsInDetailItem } = useUI();
   const product = products.find(
     (product: Product) => product.id === Number(id),
   );
   const handleGoBack = () => {
+    setIsInDetailItem(false);
     router.push(`/#articles`);
   };
 

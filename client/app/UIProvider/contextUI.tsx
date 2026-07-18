@@ -7,6 +7,8 @@ passHero:boolean,
 setPassHero:React.Dispatch<React.SetStateAction<boolean>>
 isInCart:boolean,
 setIsInCart:React.Dispatch<React.SetStateAction<boolean>>
+isInDetailItem:boolean,
+setIsInDetailItem:React.Dispatch<React.SetStateAction<boolean>>
 }
 export const UIcontext = createContext<UIcontextProps|undefined>(undefined)
 
@@ -24,6 +26,7 @@ export const UIProvider = ( {children}: {children: ReactNode})=>{
   const [isOpen, setIsOpen] = useState<boolean>(false); //estado para abrir y cerrar el menu, agregar efectos de animacion al titulo.
   const [passHero, setPassHero] = useState<boolean>(false);//estado para visibilizar elementos tras pasar herosection
   const [isInCart, setIsInCart] = useState<boolean>(false);
+  const [isInDetailItem, setIsInDetailItem] = useState<boolean>(false);
 
   useEffect(()=>{
     document.body.style.overflow = isOpen ? "hidden" : "auto"
@@ -35,7 +38,8 @@ console.log("isInCart:",isInCart, "passHero:",passHero);
   const value={
     isOpen, setIsOpen,
     passHero, setPassHero,
-    isInCart, setIsInCart
+    isInCart, setIsInCart,
+    isInDetailItem, setIsInDetailItem
   }
   return(
     <UIcontext.Provider

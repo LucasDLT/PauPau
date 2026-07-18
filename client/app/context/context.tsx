@@ -6,12 +6,7 @@ import {
   useContext,
   useEffect,
 } from "react";
-import {
-  AppStore,
-  Cart,
-  INITIAL_CART,
-  INITIAL_STATE,
-} from "../types/types";
+import { AppStore, Cart, INITIAL_CART, INITIAL_STATE } from "../types/types";
 import { products } from "../mock";
 import { normalizeProductsById } from "../helpers";
 
@@ -65,6 +60,7 @@ export const ContextProvider = ({ children }: ProviderProps) => {
             : { productId: idparsed, quantity: quantityItems },
         },
       };
+
     });
   };
 
@@ -83,6 +79,7 @@ export const ContextProvider = ({ children }: ProviderProps) => {
   //FN para eliminar el carrito
   const handleDeleteCart = () => {
     setCart(INITIAL_CART);
+    localStorage.removeItem("cart");
   };
 
   const handleIncrementItem = (id: number) => {
@@ -153,7 +150,21 @@ export const ContextProvider = ({ children }: ProviderProps) => {
         product: currentProducts,
       };
     });
+    const saveCart = localStorage.getItem("cart");
+    if (saveCart) {
+      setCart(JSON.parse(saveCart)!);
+    }
   }, []);
+
+useEffect(() => {
+  const hasItems = Object.keys(cart.listItems).length > 0;
+
+  if (hasItems) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  } else {
+    localStorage.removeItem("cart");
+  }
+}, [cart]);
 
   const value = {
     cart,

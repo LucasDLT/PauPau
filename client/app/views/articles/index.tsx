@@ -1,15 +1,16 @@
 "use client";
-import { products } from "@/app/mock";
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAppContext } from "@/app/context/context";
+import { useUI } from "@/app/UIProvider/contextUI";
 import { Product } from "@/app/types/types";
 export const Articles = () => {
   const refItems = useRef<(HTMLLIElement | null)[]>([]);
   const refContainer = useRef<HTMLUListElement | null>(null);
   const { handleAddItem, app } = useAppContext();
   const router = useRouter();
+  const { isInDetailItem, setIsInDetailItem } = useUI();
 const productsFiltered: Product[] = Object.values(app.product).filter(
     (product) => product.type === "product",
   );
@@ -51,7 +52,7 @@ const productsFiltered: Product[] = Object.values(app.product).filter(
 
   
   const handleDetailItem = (slugId: number) => {
-    console.log("log en handle");
+    setIsInDetailItem(true);
     router.push(`/detailItem/${slugId}`);
   };
   return (
@@ -92,7 +93,7 @@ const productsFiltered: Product[] = Object.values(app.product).filter(
                   </button>
                   <button
                     className="Alan-Sans p-2 text-[11px] bg-white/50 rounded-sm md:hover:cursor-pointer md:hidden"
-                    onClick={() => handleAddItem(product.id)}
+                    onClick={() => handleAddItem(product.id, 1)}
                   >
                     AGREGAR AL CARRITO
                   </button>
@@ -107,7 +108,7 @@ const productsFiltered: Product[] = Object.values(app.product).filter(
                 </button>
                 <button
                   className="hidden md:block Alan-Sans  md:tracking-wide  md:h-6 md:w-full md:bg-white/50 md:rounded-e-lg md:hover:cursor-pointer md:text-[11px] md:hover:bg-yellow-200/50 md:hover:text-olive-800 md:transform md:ease-in-out md:duration-300"
-                  onClick={() => handleAddItem(product.id)}
+                  onClick={() => handleAddItem(product.id, 1)}
                 >
                   AGREGAR AL CARRITO
                 </button>
