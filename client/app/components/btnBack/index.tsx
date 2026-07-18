@@ -8,7 +8,7 @@ export const ButtonBack = () => {
   const router = useRouter();
   const handleGoBack = () => {
     setIsInCart(false);
-    setIsInDetailItem(false);
+    setIsInDetailItem(false); 
     router.replace("/");
   };
 
