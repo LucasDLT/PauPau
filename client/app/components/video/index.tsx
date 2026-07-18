@@ -1,7 +1,7 @@
 export const Video = () => {
   return (
     <video
-      src="/videoHero.mp4"
+      src="/VideoHero.mp4"
       autoPlay
       loop
       muted
