@@ -125,7 +125,6 @@ export const OrderForm = () => {
         success: "Orden enviada correctamente",
         error: "Error al enviar la orden",
       });
-      console.log(data);
       setForm(INITIAL_FORM);
 
     } catch (error) {

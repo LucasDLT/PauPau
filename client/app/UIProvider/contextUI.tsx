@@ -34,7 +34,6 @@ export const UIProvider = ( {children}: {children: ReactNode})=>{
         document.body.style.overflow ="auto"
     }
   },[isOpen])
-console.log("isInCart:",isInCart, "passHero:",passHero);
   const value={
     isOpen, setIsOpen,
     passHero, setPassHero,
