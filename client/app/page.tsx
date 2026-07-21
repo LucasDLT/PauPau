@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <>
       <Init />
+      <ProjectSection />
       <SectionText />
       <Articles />
-      <ProjectSection />
      { /*<AboutMe />*/}
       <BuyMethodSection />
       <ContactSection />
