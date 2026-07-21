@@ -17,7 +17,7 @@ export const CarouselProject = () => {
         style={{
           "--items": lengthItems,
         }as React.CSSProperties}
-         className="flex w-max animate-scrollBanner">
+         className="flex w-max animate-scrollBanner ">
           {loopProjects.map((c, i) => (
             <li
               className="relative h-50 w-50 hover:cursor-pointer shrink-0"
@@ -27,7 +27,7 @@ export const CarouselProject = () => {
                 src={`${c.image[0]}`}
                 alt="imagen ilistrativa de un proyecto"
                 fill
-                className="hover:scale-110 transform duration-500 ease-in-out"
+                className="hover:scale-105 transform duration-500 ease-in-out p-2"
               />
             </li>
           ))}
