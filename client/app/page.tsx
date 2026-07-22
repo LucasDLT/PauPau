@@ -11,8 +11,8 @@ export default function Home() {
       <Init />
       <ProjectSection />
       <SectionText />
-      <Articles />
-     { /*<AboutMe />*/}
+      { /* <Articles />
+    <AboutMe />*/}
       <BuyMethodSection />
       <ContactSection />
     </>
