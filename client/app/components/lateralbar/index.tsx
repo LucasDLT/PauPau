@@ -49,7 +49,7 @@ export const LateralBar = () => {
         className={`hover:cursor-pointer transition-all ease-in-out duration-300 ${inCart ? "opacity-0" : "opacity-100"}`}
         onClick={navigateToCart}
       />
-      <a href="https://wa.me/541139549908?text=Hola!,%20estoy%20mirando%20tu%20pagina%20web,%20me%20gustaria%20consultarte%20sobre:" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/541136877958?text=Hola!,%20estoy%20mirando%20tu%20pagina%20web,%20me%20gustaria%20consultarte%20sobre:" target="_blank" rel="noopener noreferrer">
       <Image
         width={30}
         height={30}
@@ -59,7 +59,7 @@ export const LateralBar = () => {
       />
       </a>
 
-      <a href="https://wa.me/541139549908?text=Hola!,%20estoy%20mirando%20tu%20pagina%20web,%20me%20gustaria%20consultarte%20sobre:" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/5491136877958?text=Hola!,%20estoy%20mirando%20tu%20pagina%20web,%20me%20gustaria%20consultarte%20sobre:" target="_blank" rel="noopener noreferrer">
       <Image
         width={30}
         height={30}
